@@ -1,7 +1,7 @@
 type FrameProps = {
     children: JSX.Element[] | JSX.Element;
 };
-export default function Frame(props: FrameProps) {
+export default function FrameDiv(props: FrameProps) {
     return (
         <div
             id="frame"

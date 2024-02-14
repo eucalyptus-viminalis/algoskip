@@ -7,7 +7,7 @@ export function ErrorFrame(backUrl?: string | null, errorMsg?: string | null) {
     const frame: Frame = {
         image:
             AppConfig.hostUrl +
-            `/image/error?backUrl=${backUrl ? "true" : ""}&errorMsg=${
+            `/frame/error/image?backUrl=${backUrl ? "true" : ""}&errorMsg=${
                 errorMsg ? encodeURIComponent(errorMsg) : encodeURIComponent(defaultErrorMsg)
             }`,
         postUrl:

@@ -1,10 +1,9 @@
+import FrameDiv from "@/src/app/frame/FrameDiv";
 import { ImageResponse } from "@vercel/og";
-import Frame from "../Frame";
-import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     // Fonts
     const regular = await fetch(
         new URL("@/assets/Lumanosimo-Regular.ttf", import.meta.url)
@@ -15,25 +14,9 @@ export async function GET(req: NextRequest) {
     const mono = await fetch(
         new URL("@/assets/CourierPrime-Regular.ttf", import.meta.url)
     ).then((res) => res.arrayBuffer());
-
-    const errorMsg = req.nextUrl.searchParams.get("errorMsg");
-
     return new ImageResponse(
         (
-            <Frame>
-                <div
-                    id="status-bar"
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        // alignItems: '',
-                        justifyContent: "space-between",
-                        width: "100%",
-                        fontFamily: "mono",
-                    }}
-                >
-                    <div>{"/" + req.nextUrl.pathname.split("/").pop()}</div>
-                </div>
+            <FrameDiv>
                 <div
                     id="mid-section"
                     style={{
@@ -44,13 +27,13 @@ export async function GET(req: NextRequest) {
                         alignItems: "center",
                     }}
                 >
-                    <h2
+                    <h1
                         style={{
                             fontFamily: "regular",
                         }}
                     >
-                        {errorMsg}
-                    </h2>
+                        algoskip
+                    </h1>
                     <div
                         id="menu-bar"
                         style={{
@@ -60,15 +43,15 @@ export async function GET(req: NextRequest) {
                             justifyContent: "space-between",
                             width: "40%",
                             fontFamily: "mono",
-                            padding: 20,
                         }}
                     >
-                        <div id="menu-option-1">1 - back</div>
-                        <div id="menu-option-1">2 - home</div>
+                        <div id="menu-option-1">1 - home</div>
+                        <div id="menu-option-1">2 - trending</div>
+                        <div id="menu-option-1">3 - search</div>
+                        <div id="menu-option-1">4 - algoskip?</div>
                     </div>
                 </div>
-                <div>bottom bar</div>
-            </Frame>
+            </FrameDiv>
         ),
         {
             fonts: [
@@ -83,7 +66,7 @@ export async function GET(req: NextRequest) {
                     style: "normal",
                 },
             ],
-            debug: true,
+            // debug: true
         }
     );
 }

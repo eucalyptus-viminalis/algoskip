@@ -3,7 +3,7 @@ import { AppConfig } from "../../AppConfig";
 
 export function HomeFrame() {
     const frame: Frame = {
-        image: AppConfig.hostUrl + '/image/home',
+        image: AppConfig.hostUrl + '/frame/home/image',
         postUrl: AppConfig.hostUrl + "/frame/home",
         version: "vNext",
         buttons: [
