@@ -1,9 +1,7 @@
-import { Frame, FrameActionPayload, getFrameHtml } from "frames.js";
-import { AppConfig } from "../../AppConfig";
+import { FrameActionPayload } from "frames.js";
 import { NextRequest } from "next/server";
 import { ErrorFrame } from "./frame";
-import { HomeFrame } from "../home/route";
-
+import { HomeFrame } from "../home/frame";
 
 export function GET(req: NextRequest) {
     const backUrl = req.nextUrl.searchParams.get("backUrl");
@@ -27,3 +25,4 @@ export async function POST(req: NextRequest) {
         return ErrorFrame(backUrl, errorMsg)
     }
 }
+

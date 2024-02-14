@@ -1,35 +1,8 @@
 import { NextRequest } from "next/server";
-import { Frame, FrameActionPayload, getFrameHtml } from "frames.js";
+import { FrameActionPayload } from "frames.js";
 import { AppConfig } from "../../AppConfig";
-import { ErrorFrame } from "../error/route";
-
-export function HomeFrame() {
-    const frame: Frame = {
-        image: "",
-        postUrl: AppConfig.hostUrl + "/frame/home",
-        version: "vNext",
-        buttons: [
-            { action: "post", label: "1" },
-            { action: "post", label: "2" },
-            { action: "post", label: "3" },
-            { action: "post", label: "4" },
-        ],
-    };
-    const html = getFrameHtml(frame, {
-        title: "home | algoskip",
-        htmlBody: `
-            <h1>algoskip</h1>
-            <p>skip the algorithm.</p>
-            <p>a frame by 3070</p>
-        `,
-        // htmlHead: "",
-        og: { title: "home | algoskip" },
-    });
-    return new Response(html, {
-        status: 200,
-        headers: { "Content-Type": "text/html" },
-    });
-}
+import { HomeFrame } from "./frame";
+import { ErrorFrame } from "../error/frame";
 
 export function GET() {
     return HomeFrame()
@@ -50,3 +23,4 @@ export async function POST(req: NextRequest) {
         return ErrorFrame(AppConfig.hostUrl + '/frame/home', 'Bad route.')
     }
 }
+
