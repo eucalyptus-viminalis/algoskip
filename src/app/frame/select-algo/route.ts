@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     } else if (data.untrustedData.buttonIndex == 3) {
         // Case 2: Toggle mentions param
         return SelectAlgoFrame({
-            algo: 'reactionPerWord',
+            algo: 'reactionsPerWord',
             filters: {
                 embeds: filters?.includes('embeds'),
                 followerReactions: filters?.includes('followerReactions'),

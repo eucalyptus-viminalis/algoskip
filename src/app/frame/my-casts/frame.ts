@@ -7,7 +7,7 @@ export type MyCastsFrameParams = {
         followerReactions: boolean;
         mentions: boolean;
     };
-    algo: "popular" | "latest" | "reactionPerWord";
+    algo: "popular" | "latest" | "reactionsPerWord";
 };
 
 export function MyCastsFrame(params: MyCastsFrameParams) {
