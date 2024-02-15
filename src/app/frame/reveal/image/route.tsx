@@ -138,6 +138,7 @@ export async function GET(req: NextRequest) {
                                 alt="pfp"
                                 src={embedImg}
                                 width={300}
+                                height={300}
                                 style={{
                                     maxWidth: "85%",
                                     maxHeight: "85%",
