@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     const pfpUrl = req.nextUrl.searchParams.get("pfpUrl") ?? dansPfp;
     let filtersString = req.nextUrl.searchParams.get("filters");
     const filters = filtersString ? filtersString.split(",") : [];
-    const algo = req.nextUrl.searchParams.get("algo") ?? 'popular'
+    const algo = req.nextUrl.searchParams.get("algo") ?? "popular";
     // Fonts
     const regular = await fetch(
         new URL("@/assets/Lumanosimo-Regular.ttf", import.meta.url)
@@ -75,7 +75,7 @@ export async function GET(req: NextRequest) {
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: "60%",
+                            width: "65%",
                             borderColor: "#B6A1BD",
                             borderWidth: 5,
                             borderRadius: 50,
@@ -83,17 +83,19 @@ export async function GET(req: NextRequest) {
                             justifyContent: "space-around",
                             alignItems: "center",
                             height: "100%",
-                            paddingBottom: 20
+                            padding: 16,
+                            fontFamily: 'mono'
                         }}
                     >
-                        <span>filters</span>
+                            <span>filters</span>
                         <div
                             id="filters"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
                                 flexWrap: "wrap",
-                                gap: 20
+                                gap: 16,
+                                fontFamily: "mono",
                                 // width: "90%",
                             }}
                         >
@@ -101,14 +103,14 @@ export async function GET(req: NextRequest) {
                             {filters.map((f) => {
                                 return (
                                     <span
-                                    key={f}
-                                    id={f}
+                                        key={f}
+                                        id={f}
                                         style={{
-                                    padding: '0px 20px 16px 20px',
-                                    borderColor: "#B6A1BD",
-                                    borderWidth: 5,
-                                    borderRadius: 50,
-                                    backgroundColor: '#7819B3'
+                                            padding: "0px 10px",
+                                            borderColor: "#B6A1BD",
+                                            borderWidth: 5,
+                                            borderRadius: 50,
+                                            backgroundColor: "#7819B3",
                                         }}
                                     >
                                         {f}
@@ -116,23 +118,36 @@ export async function GET(req: NextRequest) {
                                 );
                             })}
                         </div>
-                        <span>algo</span>
+                        <hr
+                            style={{
+                                color: "white",
+                                backgroundColor: "white",
+                                width: "90%",
+                            }}
+                        ></hr>
                         <div
                             id="algo"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
                                 flexWrap: "wrap",
+                                gap: 20,
+                                fontFamily: "mono",
+                                // width: "90%",
                             }}
                         >
-                            <span 
+                            <span>algo</span>
+                            <span
                                 style={{
-                                    padding: '0px 20px 16px 20px',
+                                    padding: "0px 20px 16px 20px",
                                     borderColor: "#B6A1BD",
                                     borderWidth: 5,
                                     borderRadius: 50,
-                                    backgroundColor: '#7819B3'
-                            }}>{algo}</span>
+                                    backgroundColor: "#7819B3",
+                                }}
+                            >
+                                {algo}
+                            </span>
                         </div>
                         {/* Hang below card */}
                         <span
@@ -174,10 +189,12 @@ export async function GET(req: NextRequest) {
                                 wordBreak: "break-word",
                                 justifyContent: "space-around",
                                 alignItems: "center",
-                                textAlign: 'center'
+                                textAlign: "center",
                             }}
                         >
-                            <span style={{padding: '0px 16px 16px 16px'}}>{"apply filters"}</span>
+                            <span style={{ padding: "0px 16px 16px 16px" }}>
+                                {"apply filters"}
+                            </span>
                             {/* Hang below card */}
                             <span
                                 style={{
@@ -204,11 +221,13 @@ export async function GET(req: NextRequest) {
                                 wordBreak: "break-word",
                                 justifyContent: "space-around",
                                 alignItems: "center",
-                                textAlign: 'center',
+                                textAlign: "center",
                                 // padding: 16
                             }}
                         >
-                            <span style={{padding: '0px 16px 16px 16px'}}>{"select algo"}</span>
+                            <span style={{ padding: "0px 16px 16px 16px" }}>
+                                {"select algo"}
+                            </span>
                             {/* Hang below card */}
                             <span
                                 style={{
