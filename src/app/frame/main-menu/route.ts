@@ -5,6 +5,10 @@ import { ErrorFrame } from "../error/frame";
 import { MyCastsFrame } from "../my-casts/frame";
 
 export async function POST(req: NextRequest) {
+    // Params
+    const username = req.nextUrl.searchParams.get('username')!
+    const pfpUrl = req.nextUrl.searchParams.get('pfpUrl')!
+
     const data: FrameActionPayload = await req.json()
     // Route request
     if (data.untrustedData.buttonIndex == 1) {
@@ -19,9 +23,10 @@ export async function POST(req: NextRequest) {
                 followerReactions: false,
                 mentions: false
             },
-            algo: 'popular'
+            algo: 'latest',
+            username: username,
+            pfpUrl: pfpUrl
         })
-        return ErrorFrame()
     } else if (data.untrustedData.buttonIndex == 3) {
         return ErrorFrame()
         // Case 3: pressed trending button

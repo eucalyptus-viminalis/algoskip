@@ -7,6 +7,8 @@ export async function POST(req: NextRequest) {
     // Params
     const filters = req.nextUrl.searchParams.get('filters')!
     const algo = req.nextUrl.searchParams.get('algo')!
+    const username = req.nextUrl.searchParams.get('username')!
+    const pfpUrl = req.nextUrl.searchParams.get('pfpUrl')!
 
     // Data
     const data: FrameActionPayload = await req.json()
@@ -19,7 +21,9 @@ export async function POST(req: NextRequest) {
                 embeds: filters?.includes('embeds') ? false : true,
                 followerReactions: filters?.includes('followerReactions'),
                 mentions: filters?.includes('mentions')
-            }
+            },
+            username: username,
+            pfpUrl: pfpUrl
         } as MyCastsFrameParams)
     } else if (data.untrustedData.buttonIndex == 2) {
         // Case 2: Toggle followerReactions param
@@ -29,7 +33,9 @@ export async function POST(req: NextRequest) {
                 embeds: filters?.includes('embeds'),
                 followerReactions: filters?.includes('followerReactions') ? false : true,
                 mentions: filters?.includes('mentions')
-            }
+            },
+            username: username,
+            pfpUrl: pfpUrl
         } as MyCastsFrameParams)
     } else if (data.untrustedData.buttonIndex == 3) {
         // Case 2: Toggle mentions param
@@ -39,7 +45,9 @@ export async function POST(req: NextRequest) {
                 embeds: filters?.includes('embeds'),
                 followerReactions: filters?.includes('followerReactions'),
                 mentions: filters?.includes('mentions') ? false : true
-            }
+            },
+            username: username,
+            pfpUrl: pfpUrl
         } as MyCastsFrameParams)
     } else if (data.untrustedData.buttonIndex == 4) {
         // Case 4: pressed Done button
@@ -50,7 +58,9 @@ export async function POST(req: NextRequest) {
                 embeds: filters?.includes('embeds'),
                 followerReactions: filters?.includes('followerReactions'),
                 mentions: filters?.includes('mentions')
-            }
+            },
+            username: username,
+            pfpUrl: pfpUrl
         } as MyCastsFrameParams)
     }
 }

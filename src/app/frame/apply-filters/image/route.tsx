@@ -37,7 +37,7 @@ const filters: Filter[] = [
 
 export async function GET(req: NextRequest) {
     // Params
-    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl");
+    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl")!;
     const filterQuery = req.nextUrl.searchParams.get("filters")!;
 
     // Fonts

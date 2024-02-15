@@ -3,18 +3,19 @@ import { AppConfig } from "../../AppConfig"
 import { MyCastsFrameParams } from "../my-casts/frame"
 
 export function ApplyFiltersFrame(params: MyCastsFrameParams) {
-    const { filters, algo } = params;
+    const { filters, algo, pfpUrl, username } = params;
     type FilterKey = keyof typeof filters;
     const filterKeys = Object.keys(filters).filter((k) => {
         const key = k as FilterKey;
         return params.filters[key];
     });
     let imageParams = "?";
-    imageParams += `filters=${filterKeys.join(",")}&algo=${algo}`;
+    imageParams += `filters=${filterKeys.join(",")}&algo=${algo}&pfpUrl=${pfpUrl}`;
 
     let postParams = "?";
-    postParams += `filters=${filterKeys.join(",")}&algo=${algo}`;
+    postParams += `filters=${filterKeys.join(",")}&algo=${algo}&username=${username}&pfpUrl=${pfpUrl}`;
     // Cache bust
+    // TODO: remove later
     imageParams += `&date=${Date.now()}`
     const frame: Frame = {
         image: AppConfig.hostUrl + '/frame/apply-filters/image' + imageParams,

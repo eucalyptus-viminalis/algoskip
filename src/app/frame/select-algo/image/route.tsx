@@ -35,7 +35,7 @@ const algos: Algo[] = [
 
 export async function GET(req: NextRequest) {
     // Params
-    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl");
+    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl")!;
     const curAlgo = req.nextUrl.searchParams.get("algo")!;
 
     // Fonts

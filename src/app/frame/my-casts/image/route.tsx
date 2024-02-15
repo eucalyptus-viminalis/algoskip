@@ -11,7 +11,7 @@ const pfpSize = 100;
 
 export async function GET(req: NextRequest) {
     // Params
-    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl") ?? dansPfp;
+    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl")!;
     let filtersString = req.nextUrl.searchParams.get("filters");
     const filters = filtersString ? filtersString.split(",") : [];
     const algo = req.nextUrl.searchParams.get("algo") ?? "popular";

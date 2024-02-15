@@ -1,16 +1,17 @@
 import FrameDiv from "@/src/app/frame/FrameDiv";
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
+import TopBar from "../../TopBar";
 
 export const runtime = "edge";
 
-const dansPfp = "https://res.cloudinary.com/merkle-manufactory/image/fetch/c_fill,f_png,w_256/https://lh3.googleusercontent.com/MyUBL0xHzMeBu7DXQAqv0bM9y6s4i4qjnhcXz5fxZKS3gwWgtamxxmxzCJX7m2cuYeGalyseCA2Y6OBKDMR06TWg2uwknnhdkDA1AA"
+// const dansPfp = "https://res.cloudinary.com/merkle-manufactory/image/fetch/c_fill,f_png,w_256/https://lh3.googleusercontent.com/MyUBL0xHzMeBu7DXQAqv0bM9y6s4i4qjnhcXz5fxZKS3gwWgtamxxmxzCJX7m2cuYeGalyseCA2Y6OBKDMR06TWg2uwknnhdkDA1AA"
 
 const pfpSize = 100
 
 export async function GET(req: NextRequest) {
     // Params
-    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl") ?? dansPfp
+    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl")!
 
     // Fonts
     const regular = await fetch(
@@ -25,31 +26,10 @@ export async function GET(req: NextRequest) {
     return new ImageResponse(
         (
             <FrameDiv>
-                <div id="top-bar"
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        width: '100%',
-                        fontFamily: 'mono',
-                        justifyContent: 'space-between',
-                }}>
-                    <div id="current-route">{"/" + req.nextUrl.pathname.split("/").at(-2)}</div>
-                    {pfpUrl ? (
-                        <img 
-                            alt="pfp"
-                            src={pfpUrl}
-                            width={pfpSize}
-                            height={pfpSize}
-                            style={{
-                                borderRadius: pfpSize/2,
-                                position: 'absolute',
-                                top: 0,
-                                left: '50%',
-                                transform: 'translate(-50%, 0)'
-                            }}
-                        />
-                    ) : null}
-                </div>
+                <TopBar
+                    pfpUrl={pfpUrl}
+                    route={req.nextUrl.pathname.split('/').at(-2)}
+                />
                 <div
                     id="mid-section"
                     style={{

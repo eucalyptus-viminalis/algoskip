@@ -6,24 +6,27 @@ export type MyCastsFrameParams = {
         embeds: boolean;
         followerReactions: boolean;
         mentions: boolean;
-    };
-    algo: "popular" | "latest" | "reactionsPerWord";
+    }
+    algo: "popular" | "latest" | "reactionsPerWord"
+    username: string
+    pfpUrl: string
 };
 
 export function MyCastsFrame(params: MyCastsFrameParams) {
-    const { filters, algo } = params;
+    const { filters, algo, username, pfpUrl } = params;
     type FilterKey = keyof typeof filters;
     const filterKeys = Object.keys(filters).filter((k) => {
         const key = k as FilterKey;
         return params.filters[key];
-    });
+    }).join(',');
     let imageParams = "?";
-    imageParams += `filters=${filterKeys.join(",")}&algo=${algo}`;
+    imageParams += `filters=${filterKeys}&algo=${algo}&pfpUrl=${pfpUrl}`;
     // DEBUG
     console.log(`imageParams: ${imageParams}`);
     let postParams = "?";
-    postParams += `filters=${filterKeys.join(",")}&algo=${algo}`;
+    postParams += `filters=${filterKeys}&algo=${algo}&pfpUrl=${pfpUrl}&username=${username}`;
     // Cache bust
+    // TODO: Remove later
     imageParams += `&date=${Date.now()}`
     const frame: Frame = {
         image: AppConfig.hostUrl + "/frame/my-casts/image" + imageParams,

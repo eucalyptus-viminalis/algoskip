@@ -1,19 +1,28 @@
 import { Frame, getFrameHtml } from "frames.js"
 import { AppConfig } from "../../AppConfig"
-import { data } from "./data"
+import { getData } from "./data"
 
+export type MainMenuData = {
+    username: string
+    pfpUrl: string
+}
 
 export async function MainMenuFrame(fid: number) {
 
-    const pfpUrl = await data(fid)
+    const data = await getData(fid)
     let imageParams = '?'
-    imageParams += `pfpUrl=${pfpUrl}`
+    imageParams += `pfpUrl=${data.pfpUrl}`
+
+    let postParams = '?'
+    postParams += `pfpUrl=${data.pfpUrl}`
+        + `&username=${data.username}`
 
     // Cache bust
+    // TODO: Remove this later
     imageParams += `&date=${Date.now()}`
     const frame: Frame = {
         image: AppConfig.hostUrl + '/frame/main-menu/image' + imageParams,
-        postUrl: AppConfig.hostUrl + '/frame/main-menu',
+        postUrl: AppConfig.hostUrl + '/frame/main-menu' + postParams,
         version: 'vNext',
         buttons: [
             {action:'post', label: 'home'},

@@ -3,18 +3,19 @@ import { AppConfig } from "../../AppConfig"
 import { MyCastsFrameParams } from "../my-casts/frame"
 
 export function SelectAlgoFrame(params: MyCastsFrameParams) {
-    const { filters, algo } = params;
+    const { filters, algo, username, pfpUrl } = params;
     type FilterKey = keyof typeof filters;
     const filterKeys = Object.keys(filters).filter((k) => {
         const key = k as FilterKey;
         return params.filters[key];
     });
     let imageParams = "?";
-    imageParams += `algo=${algo}`;
+    imageParams += `algo=${algo}&pfpUrl=${pfpUrl}`;
 
     let postParams = "?";
-    postParams += `filters=${filterKeys.join(",")}&algo=${algo}`;
+    postParams += `filters=${filterKeys.join(",")}&algo=${algo}&pfpUrl=${pfpUrl}&username=${username}`;
     // Cache bust
+    // TODO: remove later
     imageParams += `&date=${Date.now()}`
     const frame: Frame = {
         image: AppConfig.hostUrl + '/frame/select-algo/image' + imageParams,
