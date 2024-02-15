@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
                         fontFamily: 'mono',
                         justifyContent: 'space-between',
                 }}>
-                    <div id="current-route">{"/" + req.nextUrl.pathname.split("/").pop()}</div>
+                    <div id="current-route">{"/" + req.nextUrl.pathname.split("/").at(-2)}</div>
                     {pfpUrl ? (
                         <img 
                             alt="pfp"
