@@ -13,11 +13,14 @@ const pfpSize = 100;
 export async function GET(req: NextRequest) {
     // Params
     const curIndex = +req.nextUrl.searchParams.get("curIdx")! + 1;
-    const recastCount = req.nextUrl.searchParams.get("recastCount")!;
-    const likeCount = req.nextUrl.searchParams.get("likeCount")!;
-    const replyCount = req.nextUrl.searchParams.get("replyCount")!;
+    const recastCount = +req.nextUrl.searchParams.get("recastCount")!;
+    const likeCount = +req.nextUrl.searchParams.get("likeCount")!;
+    const replyCount = +req.nextUrl.searchParams.get("replyCount")!;
     const next = req.nextUrl.searchParams.get("next");
-    const embedImg = req.nextUrl.searchParams.get("embedImg");
+    const embedImgEncoded = req.nextUrl.searchParams.get("embedImg");
+    const embedImg = embedImgEncoded
+        ? decodeURIComponent(embedImgEncoded)
+        : null;
     const hasSecondEmbed = req.nextUrl.searchParams.get("hasSecondEmbed")!;
     const pfpUrl = req.nextUrl.searchParams.get("pfpUrl")!;
     const username = req.nextUrl.searchParams.get("username")!;
@@ -68,7 +71,7 @@ export async function GET(req: NextRequest) {
                         justifyContent: "center",
                         alignItems: "center",
                         height: "75%",
-                        gap: 50,
+                        gap: 16,
                         padding: 16,
                     }}
                 >
@@ -77,7 +80,7 @@ export async function GET(req: NextRequest) {
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: "50%",
+                            width: 500,
                             borderColor: "#B6A1BD",
                             borderWidth: 5,
                             borderRadius: 50,
@@ -132,29 +135,34 @@ export async function GET(req: NextRequest) {
                             {castTxt}
                         </div>
                     </div>
-                    <div
-                        id="embeds"
-                        style={{
-                            display: "flex",
-                            flexWrap: "wrap",
-                        }}
-                    >
-                        {embedImg ? (
+                    {embedImg ? (
+                        <div
+                            id="embeds"
+                            style={{
+                                display: "flex",
+                                flexWrap: "wrap",
+                                fontFamily: "mono",
+                                fontSize: 40,
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}
+                        >
                             <img
-                                alt="pfp"
+                                alt="embed-img"
                                 src={embedImg}
-                                width={300}
-                                height={300}
+                                width={600}
+                                height={500}
                                 style={{
-                                    maxWidth: "85%",
-                                    maxHeight: "85%",
-                                    objectFit: "scale-down", // Crop the image to cover the specified dimensions
+                                    // maxWidth: "85%",
+                                    // maxHeight: "85%",
+                                    opacity: "100%",
+                                    objectFit: "contain", // Crop the image to cover the specified dimensions
                                     objectPosition: "center", // Center the cropped area within the image container
                                 }}
                             />
-                        ) : null}
-                        {hasSecondEmbed == "true" ? <span>+ 1</span> : null}
-                    </div>
+                            {hasSecondEmbed == "true" ? <span>+1</span> : null}
+                        </div>
+                    ) : null}
                 </div>
                 <div
                     id="bottom-bar"
@@ -185,7 +193,7 @@ export async function GET(req: NextRequest) {
                     style: "normal",
                 },
             ],
-            debug: true,
+            // debug: true,
         }
     );
 }
