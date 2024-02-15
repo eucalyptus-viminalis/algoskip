@@ -64,7 +64,7 @@ export async function GET() {
                     style: "normal",
                 },
             ],
-            debug: true
+            // debug: true
         }
     );
 }
