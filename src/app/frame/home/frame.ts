@@ -7,10 +7,8 @@ export function HomeFrame() {
         postUrl: AppConfig.hostUrl + "/frame/home",
         version: "vNext",
         buttons: [
-            { action: "post", label: "1" },
-            { action: "post", label: "2" },
-            { action: "post", label: "3" },
-            { action: "post", label: "4" },
+            { action: "post", label: "refresh" },
+            { action: "post", label: "load" },
         ],
     };
     const html = getFrameHtml(frame, {

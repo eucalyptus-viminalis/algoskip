@@ -8,15 +8,15 @@ export async function GET() {
     const regular = await fetch(
         new URL("@/assets/Lumanosimo-Regular.ttf", import.meta.url)
     ).then((res) => res.arrayBuffer());
-    const bold = await fetch(
-        new URL("@/assets/CourierPrime-Bold.ttf", import.meta.url)
-    ).then((res) => res.arrayBuffer());
+    // const bold = await fetch(
+    //     new URL("@/assets/CourierPrime-Bold.ttf", import.meta.url)
+    // ).then((res) => res.arrayBuffer());
     const mono = await fetch(
         new URL("@/assets/CourierPrime-Regular.ttf", import.meta.url)
     ).then((res) => res.arrayBuffer());
     return new ImageResponse(
         (
-            <FrameDiv>
+            <FrameDiv justifyContent="center">
                 <div
                     id="mid-section"
                     style={{
@@ -41,14 +41,12 @@ export async function GET() {
                             flexDirection: "column",
                             alignItems: "flex-start",
                             justifyContent: "space-between",
-                            width: "40%",
+                            width: "30%",
                             fontFamily: "mono",
                         }}
                     >
-                        <div id="menu-option-1">1 - home</div>
-                        <div id="menu-option-1">2 - trending</div>
-                        <div id="menu-option-1">3 - search</div>
-                        <div id="menu-option-1">4 - algoskip?</div>
+                        <div id="menu-option-1">- refresh</div>
+                        <div id="menu-option-2">- load</div>
                     </div>
                 </div>
             </FrameDiv>
@@ -66,7 +64,7 @@ export async function GET() {
                     style: "normal",
                 },
             ],
-            // debug: true
+            debug: true
         }
     );
 }
