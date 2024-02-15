@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     // Params
     const pfpUrl = req.nextUrl.searchParams.get("pfpUrl") ?? dansPfp;
     let filtersString = req.nextUrl.searchParams.get("filters");
-    const filters = filtersString ? filtersString.split(",") : ['test', 'test1'];
+    const filters = filtersString ? filtersString.split(",") : [];
     const algo = req.nextUrl.searchParams.get("algo") ?? 'popular'
     // Fonts
     const regular = await fetch(
@@ -101,6 +101,7 @@ export async function GET(req: NextRequest) {
                             {filters.map((f) => {
                                 return (
                                     <span
+                                    id={f}
                                         style={{
                                     padding: '0px 20px 16px 20px',
                                     borderColor: "#B6A1BD",
