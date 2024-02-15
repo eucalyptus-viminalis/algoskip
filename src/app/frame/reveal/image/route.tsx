@@ -15,12 +15,13 @@ export async function GET(req: NextRequest) {
     const curIndex = +req.nextUrl.searchParams.get("curIdx")! + 1;
     const recastCount = req.nextUrl.searchParams.get("recastCount")!;
     const likeCount = req.nextUrl.searchParams.get("likeCount")!;
+    const replyCount = req.nextUrl.searchParams.get("replyCount")!;
     const next = req.nextUrl.searchParams.get("next");
-    const embedImg1 = req.nextUrl.searchParams.get("embedImg1");
-    const embedImg2 = req.nextUrl.searchParams.get("embedImg2");
+    const embedImg = req.nextUrl.searchParams.get("embedImg");
+    const hasSecondEmbed = req.nextUrl.searchParams.get("hasSecondEmbed")!;
     const pfpUrl = req.nextUrl.searchParams.get("pfpUrl") ?? dansPfp;
     const username = req.nextUrl.searchParams.get("username") ?? "dandan";
-    const ago = req.nextUrl.searchParams.get("ago");
+    const ago = req.nextUrl.searchParams.get("ago")!;
     const castTxt = req.nextUrl.searchParams.get("castTxt");
 
     // Fonts
@@ -55,6 +56,7 @@ export async function GET(req: NextRequest) {
                     >
                         <span>{"rc: " + recastCount}</span>
                         <span>{"likes: " + likeCount}</span>
+                        <span>{"replies: " + replyCount}</span>
                     </div>
                 </TopBar>
                 <div
@@ -126,17 +128,17 @@ export async function GET(req: NextRequest) {
                             flexWrap: "wrap",
                         }}
                     >
-                        {embedImg1 ? (
+                        {embedImg ? (
                             <img
                                 alt="pfp"
-                                src={embedImg1}
+                                src={embedImg}
                                 style={{
                                     maxWidth: "85%",
                                     maxHeight: "85%",
                                 }}
                             />
                         ) : null}
-                        {embedImg2 ? <span>+ 1</span> : null}
+                        {hasSecondEmbed == 'true' ? <span>+ 1</span> : null}
                     </div>
                 </div>
                 <div

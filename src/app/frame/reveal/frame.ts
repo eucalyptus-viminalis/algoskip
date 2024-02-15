@@ -16,8 +16,8 @@ export type RevealData = {
     likeCount: number
     replyCount: number
     next: boolean
-    embedImg1?: string
-    embedImg2?: string
+    embedImg?: string
+    hasSecondEmbed: boolean
     ago: string
     castTxt: string
     wcCastHash: string
@@ -29,7 +29,7 @@ export async function RevealFrame(props: RevealFrameProps) {
     if (!revealData) {
         return ErrorFrame()
     }
-    let imageParams = '?'
+    let imageParams = `?curIdx=${curIndex}`
     imageParams += objectToSearchParams(revealData)
     // DEBUG
     console.log(`objectToSearchParams: ${imageParams}`)
