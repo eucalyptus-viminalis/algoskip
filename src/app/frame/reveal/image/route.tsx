@@ -22,7 +22,9 @@ export async function GET(req: NextRequest) {
     const pfpUrl = req.nextUrl.searchParams.get("pfpUrl")!;
     const username = req.nextUrl.searchParams.get("username")!;
     const ago = decodeURIComponent(req.nextUrl.searchParams.get("ago")!);
-    const castTxt = decodeURIComponent(req.nextUrl.searchParams.get("castTxt")!);
+    const castTxt = decodeURIComponent(
+        req.nextUrl.searchParams.get("castTxt")!
+    );
 
     // Fonts
     const regular = await fetch(
@@ -49,7 +51,7 @@ export async function GET(req: NextRequest) {
                             flexDirection: "row",
                             fontFamily: "mono",
                             fontSize: 40,
-                            gap: 20
+                            gap: 20,
                         }}
                     >
                         <span>{"rc: " + recastCount}</span>
@@ -118,13 +120,17 @@ export async function GET(req: NextRequest) {
                                 <span id="ago">{ago}</span>
                             </div>
                         </div>
-                        <div style={{
-                            display: 'flex',
-                            fontSize: 40,
-                            width: '100%',
-                            height: '100%',
-                            overflow: 'hidden'
-                        }}>{castTxt}</div>
+                        <div
+                            style={{
+                                display: "flex",
+                                fontSize: 40,
+                                width: "100%",
+                                height: "100%",
+                                overflow: "hidden",
+                            }}
+                        >
+                            {castTxt}
+                        </div>
                     </div>
                     <div
                         id="embeds"
@@ -142,10 +148,12 @@ export async function GET(req: NextRequest) {
                                 style={{
                                     maxWidth: "85%",
                                     maxHeight: "85%",
+                                    objectFit: "scale-down", // Crop the image to cover the specified dimensions
+                                    objectPosition: "center", // Center the cropped area within the image container
                                 }}
                             />
                         ) : null}
-                        {hasSecondEmbed == 'true' ? <span>+ 1</span> : null}
+                        {hasSecondEmbed == "true" ? <span>+ 1</span> : null}
                     </div>
                 </div>
                 <div

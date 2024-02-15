@@ -31,10 +31,11 @@ export async function RevealFrame(props: RevealFrameProps) {
     }
     let imageParams = `?curIdx=${curIndex}`
     // DEBUG
-    console.log(`objectToSearchParams: ${imageParams}`)
     let postParams = '?'
     const { filters, algo, pfpUrl, username } = props.filtersAndAlgo;
-    imageParams += objectToSearchParams(revealData)
+    const urlparams = objectToSearchParams(revealData)
+    const urlParamsQueryStr = urlparams.toString()
+    imageParams += '&' + urlParamsQueryStr
         + `&pfpUrl=${pfpUrl}&username=${username}`
     type FilterKey = keyof typeof filters;
     const filterKeys = Object.keys(filters).filter((k) => {
