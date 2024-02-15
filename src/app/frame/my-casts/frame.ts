@@ -23,6 +23,8 @@ export function MyCastsFrame(params: MyCastsFrameParams) {
     console.log(`imageParams: ${imageParams}`);
     let postParams = "?";
     postParams += `filters=${filterKeys.join(",")}&algo=${algo}`;
+    // Cache bust
+    imageParams += `&date=${Date.now()}`
     const frame: Frame = {
         image: AppConfig.hostUrl + "/frame/my-casts/image" + imageParams,
         postUrl: AppConfig.hostUrl + "/frame/my-casts" + postParams,
