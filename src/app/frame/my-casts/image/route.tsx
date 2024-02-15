@@ -101,8 +101,8 @@ export async function GET(req: NextRequest) {
                             {filters.map((f) => {
                                 return (
                                     <span
-                                    id={f}
                                     key={f}
+                                    id={f}
                                         style={{
                                     padding: '0px 20px 16px 20px',
                                     borderColor: "#B6A1BD",
