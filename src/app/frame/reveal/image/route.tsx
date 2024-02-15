@@ -19,10 +19,10 @@ export async function GET(req: NextRequest) {
     const next = req.nextUrl.searchParams.get("next");
     const embedImg = req.nextUrl.searchParams.get("embedImg");
     const hasSecondEmbed = req.nextUrl.searchParams.get("hasSecondEmbed")!;
-    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl") ?? dansPfp;
-    const username = req.nextUrl.searchParams.get("username") ?? "dandan";
-    const ago = req.nextUrl.searchParams.get("ago")!;
-    const castTxt = req.nextUrl.searchParams.get("castTxt");
+    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl")!;
+    const username = req.nextUrl.searchParams.get("username")!;
+    const ago = decodeURIComponent(req.nextUrl.searchParams.get("ago")!);
+    const castTxt = decodeURIComponent(req.nextUrl.searchParams.get("castTxt")!);
 
     // Fonts
     const regular = await fetch(
@@ -46,12 +46,10 @@ export async function GET(req: NextRequest) {
                         id="reactions"
                         style={{
                             display: "flex",
-                            position: "absolute",
-                            top: 0,
-                            left: "50%",
                             flexDirection: "row",
                             fontFamily: "mono",
-                            transform: "translate(-50%, 0)",
+                            fontSize: 40,
+                            gap: 20
                         }}
                     >
                         <span>{"rc: " + recastCount}</span>
@@ -83,7 +81,8 @@ export async function GET(req: NextRequest) {
                             borderRadius: 50,
                             // wordBreak: "break-word",
                             justifyContent: "space-around",
-                            alignItems: "center",
+                            alignItems: "flex-start",
+                            gap: 16,
                             height: "100%",
                             padding: 16,
                             fontFamily: "mono",
@@ -119,7 +118,13 @@ export async function GET(req: NextRequest) {
                                 <span id="ago">{ago}</span>
                             </div>
                         </div>
-                        <span>{castTxt}</span>
+                        <div style={{
+                            display: 'flex',
+                            fontSize: 40,
+                            width: '100%',
+                            height: '100%',
+                            overflow: 'hidden'
+                        }}>{castTxt}</div>
                     </div>
                     <div
                         id="embeds"
@@ -132,6 +137,7 @@ export async function GET(req: NextRequest) {
                             <img
                                 alt="pfp"
                                 src={embedImg}
+                                width={300}
                                 style={{
                                     maxWidth: "85%",
                                     maxHeight: "85%",
@@ -170,7 +176,7 @@ export async function GET(req: NextRequest) {
                     style: "normal",
                 },
             ],
-            // debug: true,
+            debug: true,
         }
     );
 }

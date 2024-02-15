@@ -30,11 +30,12 @@ export async function RevealFrame(props: RevealFrameProps) {
         return ErrorFrame()
     }
     let imageParams = `?curIdx=${curIndex}`
-    imageParams += objectToSearchParams(revealData)
     // DEBUG
     console.log(`objectToSearchParams: ${imageParams}`)
     let postParams = '?'
     const { filters, algo, pfpUrl, username } = props.filtersAndAlgo;
+    imageParams += objectToSearchParams(revealData)
+        + `&pfpUrl=${pfpUrl}&username=${username}`
     type FilterKey = keyof typeof filters;
     const filterKeys = Object.keys(filters).filter((k) => {
         const key = k as FilterKey;
