@@ -1,14 +1,17 @@
+
 type FrameProps = {
-    children: JSX.Element[] | JSX.Element;
+    children: JSX.Element[] | JSX.Element
+    justifyContent?: string
 };
 export default function FrameDiv(props: FrameProps) {
+    const justifyContent = props.justifyContent ?? 'space-between'
     return (
         <div
             id="frame"
             style={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: 'space-between',
+                justifyContent: justifyContent,
                 alignItems: 'center',
                 fontSize: 50,
                 fontFamily: 'regular',
