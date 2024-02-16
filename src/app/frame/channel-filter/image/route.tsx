@@ -2,6 +2,7 @@ import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 import FrameDiv from "../../FrameDiv";
 import TopBar from "../../TopBar";
+import ActionCard from "../../ActionCard";
 
 export const runtime = "edge";
 
@@ -67,46 +68,16 @@ export async function GET(req: NextRequest) {
                     }}
                 >
                     {channelFilters.map((algo) => {
-                        const id = algo.urlSearchParamKey + '-algo'
                         return (
-                            <div
-                                id={id}
-                                key={id}
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    width: "30%",
-                                    borderColor: "#B6A1BD",
-                                    borderWidth: 5,
-                                    borderRadius: 50,
-                                    wordBreak: "break-word",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    height: "100%",
-                                    textAlign: 'center'
-                                }}
+                            <ActionCard
+                                buttonHint={algo.buttonHint} 
+                                key={algo.color}
+                                selected={false}
+                                width={'30%'}
                             >
-                                <span>{"trending channels from"}</span>
-                                <span
-                                    style={{
-                                        color: algo.color,
-                                    }}
-                                >
-                                    {algo.displayText}
-                                </span>
-                                {/* Hang below card */}
-                                <span
-                                    style={{
-                                        display: "flex",
-                                        position: "absolute",
-                                        left: "50%",
-                                        bottom: 0,
-                                        transform: "translate(-50%, 100%)",
-                                    }}
-                                >
-                                    {algo.buttonHint}
-                                </span>
-                            </div>
+                                <span>{'trending channels from'}</span>
+                                <span style={{color: algo.color, padding: '0px 16px 16px 16px'}}>{algo.displayText}</span>
+                            </ActionCard>
                         );
                     })}
                 </div>

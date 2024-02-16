@@ -10,12 +10,16 @@ export async function GET(req: NextRequest) {
     const total = req.nextUrl.searchParams.get("total")!;
 
     const option1Name = req.nextUrl.searchParams.get("option1Name");
-    const option1CountMutuals = req.nextUrl.searchParams.get("option1CountMutuals");
+    const option1CountMutuals = req.nextUrl.searchParams.get(
+        "option1CountMutuals"
+    );
     const option1Count1Day = req.nextUrl.searchParams.get("option1Count1Day");
     const option1Idx = req.nextUrl.searchParams.get("option1Idx");
 
     const option2Name = req.nextUrl.searchParams.get("option2Name");
-    const option2CountMutuals = req.nextUrl.searchParams.get("option2CountMutuals");
+    const option2CountMutuals = req.nextUrl.searchParams.get(
+        "option2CountMutuals"
+    );
     const option2Count1Day = req.nextUrl.searchParams.get("option2Count1Day");
     const option2Idx = req.nextUrl.searchParams.get("option2Idx");
 
@@ -60,14 +64,25 @@ export async function GET(req: NextRequest) {
                                 justifyContent: "space-around",
                                 alignItems: "center",
                                 height: "100%",
+                                textAlign: "center",
                             }}
                         >
                             <span>{"/" + option1Name}</span>
                             {option1CountMutuals ? (
-                                <span>{option1CountMutuals + " casts from mutuals"}</span>
+                                <span>
+                                    {option1CountMutuals +
+                                        " casts"}
+                                </span>
                             ) : null}
                             {option1Count1Day ? (
-                                <span>{option1Count1Day + " casts in 1 day"}</span>
+                                <span>
+                                    {option1Count1Day + " casts"}
+                                </span>
+                            ) : null}
+                            {option1CountMutuals ? (
+                                <span style={{fontFamily: 'mono'}}>
+                                    {"from mutuals"}
+                                </span>
                             ) : null}
                             {/* Hang below card */}
                             <span
@@ -99,14 +114,23 @@ export async function GET(req: NextRequest) {
                                 justifyContent: "space-around",
                                 alignItems: "center",
                                 height: "100%",
+                                textAlign: "center",
                             }}
                         >
                             <span>{"/" + option2Name}</span>
                             {option2CountMutuals ? (
-                                <span>{option2CountMutuals + " casts from mutuals"}</span>
+                                <span>
+                                    {option2CountMutuals +
+                                        " casts"}
+                                </span>
                             ) : null}
                             {option2Count1Day ? (
-                                <span>{option2Count1Day + " casts in 1 day"}</span>
+                                <span>{option2Count1Day + " casts"}</span>
+                            ) : null}
+                            {option2CountMutuals ? (
+                                <span style={{fontFamily: 'mono'}}>
+                                    {"from mutuals"}
+                                </span>
                             ) : null}
                             {/* Hang below card */}
                             <span
