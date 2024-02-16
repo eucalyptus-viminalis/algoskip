@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     const algo = req.nextUrl.searchParams.get("algo")!;
     const channel = req.nextUrl.searchParams.get("channel");
     const channelFilter = req.nextUrl.searchParams.get("channelFilter")!;
-    const skip = req.nextUrl.searchParams.get("skip")!;
+    const skip = +req.nextUrl.searchParams.get("skip")!;
 
         const trendingCastsFramParams = {
             filters: {
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     const data: FrameActionPayload = await req.json();
     // Route request
     if (data.untrustedData.buttonIndex == 1) {
-        if (+skip == 0) {
+        if (skip == 0) {
             // Go back
             return ChannelFilterFrame(trendingCastsFramParams);
         } else {
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
             return SelectChannelFrame({
                 channelFilter: channelFilter,
                 fid: data.untrustedData.fid,
-                skip: +skip,
+                skip: skip - 2,
                 trendingCastsFrameParams: trendingCastsFramParams,
             } as SelectChannelFrameParams);
         }
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
         return SelectChannelFrame({
             channelFilter: channelFilter,
             fid: data.untrustedData.fid,
-            skip: +skip + 2,
+            skip: skip + 2,
             trendingCastsFrameParams: trendingCastsFramParams,
         } as SelectChannelFrameParams);
     }

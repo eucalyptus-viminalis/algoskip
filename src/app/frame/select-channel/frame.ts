@@ -20,10 +20,10 @@ export async function SelectChannelFrame(params: SelectChannelFrameParams) {
     }).join(',');
 
     const data = await getData(fid, channelFilter);
-    let slicedData = data.slice(skip ?? 0).slice(0, 2);
+    let slicedData = data.slice(skip).slice(0, 2);
 
     let postParams = "?";
-    postParams += `channelFilter=${channelFilter}&skip=${skip ?? ""}`
+    postParams += `channelFilter=${channelFilter}&skip=${skip}`
     postParams += `channel=${channel ?? ''}&filters=${filterKeys}&algo=${algo ?? ''}&pfpUrl=${pfpUrl}&username=${username}`;
 
     let buttons: FrameButton[] = [];
@@ -32,17 +32,17 @@ export async function SelectChannelFrame(params: SelectChannelFrameParams) {
 
     if (slicedData[0]) {
         // First button
-        if (!skip) {
+        if (skip == 0) {
             // Back button
             buttons.push({ action: "post", label: "back" });
         } else {
             buttons.push({ action: "post", label: `1..${skip}` });
         }
         // Select button 1
-        buttons.push({ action: "post", label: `${skip ? skip + 1 : 1}` });
+        buttons.push({ action: "post", label: `${skip + 1}` });
         imageParams += `&option1Name=${slicedData[0].id}&option1Count=${
             slicedData[0].castsFromMutuals ?? ""
-        }&option1Idx=${skip ?? 0}`;
+        }&option1Idx=${skip}`;
 
         // Add channelId to postParams
         postParams += `&option1Name=${slicedData[0].id}`
@@ -53,14 +53,16 @@ export async function SelectChannelFrame(params: SelectChannelFrameParams) {
 
             imageParams += `&option2Name=${slicedData[1].id}&option2Count=${
                 slicedData[1].castsFromMutuals ?? ""
-            }&option2Idx=${skip ? skip + 1 : 1}`;
+            }&option2Idx=${skip+1}`;
             // Select button 2
-            buttons.push({ action: "post", label: `${skip ? skip + 2 : 2}` });
-            if (skip && data.length > skip + 2) {
+            buttons.push({ action: "post", label: `${skip + 2}` });
+            console.log(`skip: ${skip}`)
+            if (data.length > skip + 2) {
+                console.log('here')
                 // paging button
                 buttons.push({
                     action: "post",
-                    label: `${skip + 1}..${data.length}`,
+                    label: `${skip + 3}..${data.length}`,
                 });
             }
         }
