@@ -2,7 +2,7 @@ import { NeynarAPIClient, TimeWindow } from "@neynar/nodejs-sdk";
 import { AppConfig } from "../../AppConfig";
 import { CastWithInteractions, FeedResponse } from "@neynar/nodejs-sdk/build/neynar-api/v2";
 
-export type ChannelFilter = "rootCastsFromMutuals" | string | null;
+export type ChannelFilter = "following" | 'anyone'
 
 const client = new NeynarAPIClient(AppConfig.neynarApiKey);
 
@@ -11,11 +11,11 @@ type ChannelData = {
     castsFromMutuals?: number
 }
 
-export async function data(fid: number, filter?: ChannelFilter): Promise<ChannelData[]> {
-    if (filter && filter == "rootCastsFromMutuals") {
+export async function getData(fid: number, filter: ChannelFilter): Promise<ChannelData[]> {
+    if (filter == "following") {
         const result: FeedResponse = await client.fetchUserFollowingFeed(fid, {
             // cursor,
-            limit: 100,
+            limit: 100,     // max limit
             // withRecasts,
             // withReplies
         });
@@ -23,7 +23,7 @@ export async function data(fid: number, filter?: ChannelFilter): Promise<Channel
         const resultGrouped = result.casts.reduce((acc, c) => {
             // Switch on parent_url
             if (!c.parent_url) {
-                // Case 1: no 
+                // Case 1: no parent URL
                 return acc;
             }
             if (!c.parent_url.includes('channel')) {
@@ -45,7 +45,7 @@ export async function data(fid: number, filter?: ChannelFilter): Promise<Channel
         }, [] as { channel: string; casts: CastWithInteractions[] }[]);
         resultGrouped.sort((a, b) => b.casts.length - a.casts.length);
 
-        const resultSliced = resultGrouped.slice(0, 3);
+        const resultSliced = resultGrouped.slice(0, 5);
         return resultSliced.map<ChannelData>(r => {
             const channelData: ChannelData = {
                 id: r.channel,
@@ -54,17 +54,19 @@ export async function data(fid: number, filter?: ChannelFilter): Promise<Channel
             console.log(channelData)
             return channelData
         });
-    } else {
+    } else if (filter == 'anyone') {
         // Global trending channels
         const res = await client.fetchTrendingChannels(TimeWindow.ONE_DAY)
-        const top3Channels = res.channels.slice(0, 3)
+        const topChannels = res.channels.slice(0, 5)
         const channelFrameData: {
             id: string,
-        }[] = top3Channels.map(c=> {
+        }[] = topChannels.map(c=> {
             return {
-                id: c.id
+                id: c.id,
             }
         })
         return channelFrameData
+    } else {
+        throw new Error('bad channel filter: ', filter)
     }
 }

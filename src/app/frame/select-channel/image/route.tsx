@@ -1,50 +1,39 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 import FrameDiv from "../../FrameDiv";
+import TopBar from "../../TopBar";
 
 export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
-    // Fonts
-    const regular = await fetch(
-        new URL("@/assets/Lumanosimo-Regular.ttf", import.meta.url)
-    ).then((res) => res.arrayBuffer());
-    const bold = await fetch(
-        new URL("@/assets/CourierPrime-Bold.ttf", import.meta.url)
-    ).then((res) => res.arrayBuffer());
-    const mono = await fetch(
-        new URL("@/assets/CourierPrime-Regular.ttf", import.meta.url)
-    ).then((res) => res.arrayBuffer());
-
     // Params
     const total = req.nextUrl.searchParams.get("total")!;
 
-    const option1Name = req.nextUrl.searchParams.get("option1Name")!;
-    const option1Count = +req.nextUrl.searchParams.get("option1Count")!;
-    const option1Idx = +req.nextUrl.searchParams.get("option1Idx")!;
+    const option1Name = req.nextUrl.searchParams.get("option1Name");
+    const option1Count = req.nextUrl.searchParams.get("option1Count");
+    const option1Idx = req.nextUrl.searchParams.get("option1Idx");
 
     const option2Name = req.nextUrl.searchParams.get("option2Name");
     const option2Count = req.nextUrl.searchParams.get("option2Count");
     const option2Idx = req.nextUrl.searchParams.get("option2Idx");
 
+    // Fonts
+    const regular = await fetch(
+        new URL("@/assets/Lumanosimo-Regular.ttf", import.meta.url)
+    ).then((res) => res.arrayBuffer());
+    // const bold = await fetch(
+    //     new URL("@/assets/CourierPrime-Bold.ttf", import.meta.url)
+    // ).then((res) => res.arrayBuffer());
+    const mono = await fetch(
+        new URL("@/assets/CourierPrime-Regular.ttf", import.meta.url)
+    ).then((res) => res.arrayBuffer());
+
     return new ImageResponse(
         (
             <FrameDiv>
-                <div
-                    id="status-bar"
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        // alignItems: '',
-                        justifyContent: "space-between",
-                        width: "100%",
-                        fontFamily: "mono",
-                    }}
-                >
-                    <div id="current-route">
-                        {"/" + req.nextUrl.pathname.split("/").at(-2)}
-                    </div>
-                </div>
+                <TopBar 
+                    route={req.nextUrl.pathname.split('/').at(-2)} 
+                />
                 <div
                     id="mid-section"
                     style={{
@@ -57,6 +46,7 @@ export async function GET(req: NextRequest) {
                         gap: 50
                     }}
                 >
+                    {option1Name ? (
                     <div
                         id="option-1"
                         style={{
@@ -84,9 +74,12 @@ export async function GET(req: NextRequest) {
                                 transform: 'translate(-50%, 100%)',
                             }}
                         >
-                            {+option1Idx + 1}
+                            {+option1Idx! + 1}
                         </span>
                     </div>
+                    ) : (
+                        <p>No trending channels found.</p>
+                    )}
                     {option2Name ? (
                         <div
                             id="option-2"
@@ -131,7 +124,7 @@ export async function GET(req: NextRequest) {
                         fontFamily: "mono",
                     }}
                 >
-                    {option1Idx == 0 ? (
+                    {!option1Idx || +option1Idx! == 0 ? (
                         <span>back</span>
                     ) : (
                         <span>{`1..${option1Idx}`}</span>
