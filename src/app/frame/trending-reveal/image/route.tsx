@@ -23,7 +23,8 @@ export async function GET(req: NextRequest) {
         ? decodeURIComponent(embedImgEncoded)
         : null;
     const hasSecondEmbed = req.nextUrl.searchParams.get("hasSecondEmbed")!;
-    const pfpUrl = req.nextUrl.searchParams.get("pfpUrl")!;
+    const pfpUrlEncoded = req.nextUrl.searchParams.get("pfpUrl")!;
+    const pfpUrl = decodeURIComponent(pfpUrlEncoded);
     const username = req.nextUrl.searchParams.get("username")!;
     const ago = decodeURIComponent(req.nextUrl.searchParams.get("ago")!);
     const castTxt = decodeURIComponent(
@@ -124,7 +125,11 @@ export async function GET(req: NextRequest) {
                                 }}
                             >
                                 <span id="username">{"@" + username}</span>
-                                <span id="ago">{ago}</span>
+                                <span id="ago"
+                                    style={{
+                                        fontSize: 40
+                                    }} 
+                                >{ago}</span>
                             </div>
                         </div>
                         <div
