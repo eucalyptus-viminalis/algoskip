@@ -44,7 +44,13 @@ export async function SelectChannelFrame(params: SelectChannelFrameParams) {
             slicedData[0].castsFromMutuals ?? ""
         }&option1Idx=${skip ?? 0}`;
 
+        // Add channelId to postParams
+        postParams += `&option1Name=${slicedData[0].id}`
+
         if (slicedData[1]) {
+            // Add channelId of second option to postParams
+            postParams += `&option2Name=${slicedData[1].id}`
+
             imageParams += `&option2Name=${slicedData[1].id}&option2Count=${
                 slicedData[1].castsFromMutuals ?? ""
             }&option2Idx=${skip ? skip + 1 : 1}`;
