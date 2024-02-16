@@ -31,9 +31,7 @@ export async function GET(req: NextRequest) {
     return new ImageResponse(
         (
             <FrameDiv>
-                <TopBar 
-                    route={req.nextUrl.pathname.split('/').at(-2)} 
-                />
+                <TopBar route={req.nextUrl.pathname.split("/").at(-2)} />
                 <div
                     id="mid-section"
                     style={{
@@ -42,41 +40,43 @@ export async function GET(req: NextRequest) {
                         width: "100%",
                         justifyContent: "center",
                         alignItems: "center",
-                        height: '70%',
-                        gap: 50
+                        height: "70%",
+                        gap: 50,
                     }}
                 >
                     {option1Name ? (
-                    <div
-                        id="option-1"
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            width: "40%",
-                            borderColor: "#B6A1BD",
-                            borderWidth: 5,
-                            borderRadius: 50,
-                            wordBreak: "break-word",
-                            justifyContent: "space-around",
-                            alignItems: "center",
-                            height: '100%'
-                        }}
-                    >
-                        <span>{"/" + option1Name}</span>
-                        <span>{option1Count + " casts"}</span>
-                        {/* Hang below card */}
-                        <span
+                        <div
+                            id="option-1"
                             style={{
                                 display: "flex",
-                                position: "absolute",
-                                left: "50%",
-                                bottom: 0,
-                                transform: 'translate(-50%, 100%)',
+                                flexDirection: "column",
+                                width: "40%",
+                                borderColor: "#B6A1BD",
+                                borderWidth: 5,
+                                borderRadius: 50,
+                                wordBreak: "break-word",
+                                justifyContent: "space-around",
+                                alignItems: "center",
+                                height: "100%",
                             }}
                         >
-                            {+option1Idx! + 1}
-                        </span>
-                    </div>
+                            <span>{"/" + option1Name}</span>
+                            {option1Count ? (
+                                <span>{option1Count + " casts"}</span>
+                            ) : null}
+                            {/* Hang below card */}
+                            <span
+                                style={{
+                                    display: "flex",
+                                    position: "absolute",
+                                    left: "50%",
+                                    bottom: 0,
+                                    transform: "translate(-50%, 100%)",
+                                }}
+                            >
+                                {+option1Idx! + 1}
+                            </span>
+                        </div>
                     ) : (
                         <p>No trending channels found.</p>
                     )}
@@ -93,11 +93,13 @@ export async function GET(req: NextRequest) {
                                 wordBreak: "break-word",
                                 justifyContent: "space-around",
                                 alignItems: "center",
-                                height: '100%'
+                                height: "100%",
                             }}
                         >
                             <span>{"/" + option2Name}</span>
-                            <span>{option2Count + " casts"}</span>
+                            {option2Count ? (
+                                <span>{option2Count + " casts"}</span>
+                            ) : null}
                             {/* Hang below card */}
                             <span
                                 style={{
@@ -105,7 +107,7 @@ export async function GET(req: NextRequest) {
                                     position: "absolute",
                                     left: "50%",
                                     bottom: 0,
-                                    transform: 'translate(-50%, 100%)',
+                                    transform: "translate(-50%, 100%)",
                                     // translate: '[-50, -50]'
                                 }}
                             >
@@ -131,7 +133,7 @@ export async function GET(req: NextRequest) {
                     )}
                     {option2Idx ? (
                         <span>{`${+option2Idx! + 2}..${total}`}</span>
-                    ): null}
+                    ) : null}
                 </div>
             </FrameDiv>
         ),
