@@ -1,8 +1,8 @@
 import { FrameActionPayload } from "frames.js";
 import { NextRequest } from "next/server";
 import { HomeFrame } from "../home/frame";
-import { ErrorFrame } from "../error/frame";
 import { MyCastsFrame } from "../my-casts/frame";
+import { TrendingCastsFrame } from "../trending-casts/frame";
 
 export async function POST(req: NextRequest) {
     // Params
@@ -28,9 +28,17 @@ export async function POST(req: NextRequest) {
             pfpUrl: pfpUrl
         })
     } else if (data.untrustedData.buttonIndex == 3) {
-        return ErrorFrame()
-        // Case 3: pressed trending button
-        // TODO
-        // return TrendingFrame()
+        // Case 3: pressed trending-casts button
+        return TrendingCastsFrame({
+            filters: {
+                embeds: false,
+                followerReactions: false,
+                mentions: false,
+            },
+            pfpUrl,
+            username,
+            // algo:,
+            // channel: ,
+        })
     }
 }
