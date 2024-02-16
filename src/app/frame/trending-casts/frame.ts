@@ -25,7 +25,7 @@ export function TrendingCastsFrame(params: TrendingCastsFrameParams) {
     // DEBUG
     console.log(`imageParams: ${imageParams}`);
     let postParams = "?";
-    postParams += `channel=${channel ?? ''}filters=${filterKeys}&algo=${algo ?? ''}&pfpUrl=${pfpUrl}&username=${username}`;
+    postParams += `channel=${channel ?? ''}&filters=${filterKeys}&algo=${algo ?? ''}&pfpUrl=${pfpUrl}&username=${username}`;
     // Cache bust
     // TODO: Remove later
     imageParams += `&date=${Date.now()}`
