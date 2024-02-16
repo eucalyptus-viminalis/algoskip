@@ -1,14 +1,15 @@
 import { NeynarAPIClient, TimeWindow } from "@neynar/nodejs-sdk";
 import { AppConfig } from "../../AppConfig";
-import { CastWithInteractions, FeedResponse } from "@neynar/nodejs-sdk/build/neynar-api/v2";
+import { CastWithInteractions, Channel, FeedResponse } from "@neynar/nodejs-sdk/build/neynar-api/v2";
 
 export type ChannelFilter = "following" | 'anyone'
 
 const client = new NeynarAPIClient(AppConfig.neynarApiKey);
 
 type ChannelData = {
-    id: string,
+    id: string
     castsFromMutuals?: number
+    castsIn1day?: number
 }
 
 export async function getData(fid: number, filter: ChannelFilter): Promise<ChannelData[]> {
@@ -56,13 +57,28 @@ export async function getData(fid: number, filter: ChannelFilter): Promise<Chann
         });
     } else if (filter == 'anyone') {
         // Global trending channels
-        const res = await client.fetchTrendingChannels(TimeWindow.ONE_DAY)
-        const topChannels = res.channels.slice(0, 5)
-        const channelFrameData: {
-            id: string,
-        }[] = topChannels.map(c=> {
+        const res = await client.fetchTrendingChannels(TimeWindow.ONE_DAY) as any
+        console.log(`res.channels[0]: ${JSON.stringify(res.channels[0], null, 2)}`)
+
+        const topChannels: {
+            object: string
+            cast_count_1d: string
+            cast_count_7d: string
+            cast_count_30d: string
+            channel: {
+                id: string
+                url: string
+                name: string
+                description: string
+                object: string
+                parent_url: string
+            }
+        }[] = res.channels.slice(0, 5)
+        // console.log(`topChannels: ${JSON.stringify(topChannels, null, 2)}`)
+        const channelFrameData: ChannelData[] = topChannels.map(c=> {
             return {
-                id: c.id ?? c.name,
+                id: c.channel.id,
+                castsIn1day: +c.cast_count_1d
             }
         })
         return channelFrameData

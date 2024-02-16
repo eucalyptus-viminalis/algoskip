@@ -11,8 +11,8 @@ export type SelectChannelFrameParams = {
 };
 
 export async function SelectChannelFrame(params: SelectChannelFrameParams) {
-    const { channelFilter, fid, skip, trendingCastsFrameParams: trendingsCastsFrameParams } = params;
-    const {filters, pfpUrl, username, algo, channel,} = trendingsCastsFrameParams
+    const { channelFilter, fid, skip, trendingCastsFrameParams } = params;
+    const {filters, pfpUrl, username, algo, channel,} = trendingCastsFrameParams
     type FilterKey = keyof typeof filters;
     const filterKeys = Object.keys(filters).filter((k) => {
         const key = k as FilterKey;
@@ -40,9 +40,9 @@ export async function SelectChannelFrame(params: SelectChannelFrameParams) {
         }
         // Select button 1
         buttons.push({ action: "post", label: `${skip + 1}` });
-        imageParams += `&option1Name=${slicedData[0].id}&option1Count=${
+        imageParams += `&option1Name=${slicedData[0].id}&option1CountMutuals=${
             slicedData[0].castsFromMutuals ?? ""
-        }&option1Idx=${skip}`;
+        }&option1Count1Day=${slicedData[0].castsIn1day ?? ""}&option1Idx=${skip}`;
 
         // Add channelId to postParams
         postParams += `&option1Name=${slicedData[0].id}`
@@ -51,9 +51,9 @@ export async function SelectChannelFrame(params: SelectChannelFrameParams) {
             // Add channelId of second option to postParams
             postParams += `&option2Name=${slicedData[1].id}`
 
-            imageParams += `&option2Name=${slicedData[1].id}&option2Count=${
+            imageParams += `&option2Name=${slicedData[1].id}&option2CountMutuals=${
                 slicedData[1].castsFromMutuals ?? ""
-            }&option2Idx=${skip+1}`;
+            }&option2Count1Day=${slicedData[1].castsIn1day ?? ""}&option2Idx=${skip+1}`;
             // Select button 2
             buttons.push({ action: "post", label: `${skip + 2}` });
             console.log(`skip: ${skip}`)

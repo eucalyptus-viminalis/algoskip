@@ -10,11 +10,13 @@ export async function GET(req: NextRequest) {
     const total = req.nextUrl.searchParams.get("total")!;
 
     const option1Name = req.nextUrl.searchParams.get("option1Name");
-    const option1Count = req.nextUrl.searchParams.get("option1Count");
+    const option1CountMutuals = req.nextUrl.searchParams.get("option1CountMutuals");
+    const option1Count1Day = req.nextUrl.searchParams.get("option1Count1Day");
     const option1Idx = req.nextUrl.searchParams.get("option1Idx");
 
     const option2Name = req.nextUrl.searchParams.get("option2Name");
-    const option2Count = req.nextUrl.searchParams.get("option2Count");
+    const option2CountMutuals = req.nextUrl.searchParams.get("option2CountMutuals");
+    const option2Count1Day = req.nextUrl.searchParams.get("option2Count1Day");
     const option2Idx = req.nextUrl.searchParams.get("option2Idx");
 
     // Fonts
@@ -61,8 +63,11 @@ export async function GET(req: NextRequest) {
                             }}
                         >
                             <span>{"/" + option1Name}</span>
-                            {option1Count ? (
-                                <span>{option1Count + " casts"}</span>
+                            {option1CountMutuals ? (
+                                <span>{option1CountMutuals + " casts from mutuals"}</span>
+                            ) : null}
+                            {option1Count1Day ? (
+                                <span>{option1Count1Day + " casts in 1 day"}</span>
                             ) : null}
                             {/* Hang below card */}
                             <span
@@ -70,7 +75,7 @@ export async function GET(req: NextRequest) {
                                     display: "flex",
                                     position: "absolute",
                                     left: "50%",
-                                    bottom: 0,
+                                    bottom: -10,
                                     transform: "translate(-50%, 100%)",
                                 }}
                             >
@@ -97,8 +102,11 @@ export async function GET(req: NextRequest) {
                             }}
                         >
                             <span>{"/" + option2Name}</span>
-                            {option2Count ? (
-                                <span>{option2Count + " casts"}</span>
+                            {option2CountMutuals ? (
+                                <span>{option2CountMutuals + " casts from mutuals"}</span>
+                            ) : null}
+                            {option2Count1Day ? (
+                                <span>{option2Count1Day + " casts in 1 day"}</span>
                             ) : null}
                             {/* Hang below card */}
                             <span
@@ -106,7 +114,7 @@ export async function GET(req: NextRequest) {
                                     display: "flex",
                                     position: "absolute",
                                     left: "50%",
-                                    bottom: 0,
+                                    bottom: -10,
                                     transform: "translate(-50%, 100%)",
                                     // translate: '[-50, -50]'
                                 }}

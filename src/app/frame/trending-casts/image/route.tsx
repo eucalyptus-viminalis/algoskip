@@ -2,6 +2,8 @@ import FrameDiv from "@/src/app/frame/FrameDiv";
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 import TopBar from "../../TopBar";
+import Pill from "../../Pill";
+import ActionCard from "../../ActionCard";
 
 export const runtime = "edge";
 
@@ -74,17 +76,7 @@ export async function GET(req: NextRequest) {
                         >
                             <span>channel</span>
                             {channel ? (
-                                <span
-                                    style={{
-                                        padding: "0px 20px 16px 20px",
-                                        borderColor: "#B6A1BD",
-                                        borderWidth: 5,
-                                        borderRadius: 50,
-                                        backgroundColor: "#7819B3",
-                                    }}
-                                >
-                                    {channel}
-                                </span>
+                                <Pill text={channel} />
                             ) : (
                                 <span>None</span>
                             )}
@@ -96,35 +88,21 @@ export async function GET(req: NextRequest) {
                                 width: "90%",
                             }}
                         ></hr>
-                        <span>filters</span>
                         <div
                             id="filters"
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
                                 flexWrap: "wrap",
-                                gap: 16,
+                                gap: 20,
                                 fontFamily: "mono",
                                 // width: "90%",
                             }}
                         >
+                            <span>filters</span>
                             {filters.length == 0 ? <span>None</span> : null}
                             {filters.map((f) => {
-                                return (
-                                    <span
-                                        key={f}
-                                        id={f}
-                                        style={{
-                                            padding: "0px 10px",
-                                            borderColor: "#B6A1BD",
-                                            borderWidth: 5,
-                                            borderRadius: 50,
-                                            backgroundColor: "#7819B3",
-                                        }}
-                                    >
-                                        {f}
-                                    </span>
-                                );
+                                return <Pill text={f} key={f} />;
                             })}
                         </div>
                         <hr
@@ -146,21 +124,7 @@ export async function GET(req: NextRequest) {
                             }}
                         >
                             <span>algo</span>
-                            {algo ? (
-                                <span
-                                    style={{
-                                        padding: "0px 20px 16px 20px",
-                                        borderColor: "#B6A1BD",
-                                        borderWidth: 5,
-                                        borderRadius: 50,
-                                        backgroundColor: "#7819B3",
-                                    }}
-                                >
-                                    {algo}
-                                </span>
-                            ) : (
-                                <span>None</span>
-                            )}
+                            {algo ? <Pill text={algo} /> : <span>None</span>}
                         </div>
                         {/* Hang below card */}
                         {channel && algo ? (
@@ -169,7 +133,8 @@ export async function GET(req: NextRequest) {
                                     display: "flex",
                                     position: "absolute",
                                     left: "50%",
-                                    bottom: 0,
+                                    bottom: -10,
+                                    fontFamily: "regular",
                                     transform: "translate(-50%, 100%)",
                                 }}
                             >
@@ -203,127 +168,52 @@ export async function GET(req: NextRequest) {
                                     alignItems: "center",
                                 }}
                             >
-                                <span>Step 1</span>
-                                <div
-                                    id="select-channel"
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        width: "100%",
-                                        borderColor: "#B6A1BD",
-                                        borderWidth: 5,
-                                        borderRadius: 50,
-                                        wordBreak: "break-word",
-                                        justifyContent: "space-around",
-                                        alignItems: "center",
-                                        textAlign: "center",
-                                    }}
-                                >
+                                <ActionCard buttonHint="🔴" selected={false}>
+                                    {/* Guide? */}
+                                    {/* <span style={{
+                                        position: "absolute",
+                                        left: "50%",
+                                        top: -16,
+                                        transform: "translate(-50%, -100%)",
+                                    }}>Step 1</span> */}
                                     <span
                                         style={{
                                             padding: "0px 16px 16px 16px",
                                         }}
                                     >
-                                        {"select channel"}
+                                        select channel
                                     </span>
-                                    {/* Hang below card */}
-                                    <span
-                                        style={{
-                                            display: "flex",
-                                            position: "absolute",
-                                            left: "50%",
-                                            bottom: 0,
-                                            transform: "translate(-50%, 100%)",
-                                            // translate: '[-50, -50]'
-                                        }}
-                                    >
-                                        {"🔴"}
-                                    </span>
-                                </div>
+                                </ActionCard>
                             </div>
                         ) : (
                             <div
                                 style={{
                                     display: "flex",
                                     flexDirection: "column",
-                                    justifyContent: "space-between",
+                                    justifyContent: "space-around",
                                     gap: 16,
                                     alignItems: "center",
+                                    height: '100%'
                                 }}
                             >
-                                <div
-                                    id="apply-filters"
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        width: "100%",
-                                        borderColor: "#B6A1BD",
-                                        borderWidth: 5,
-                                        borderRadius: 50,
-                                        wordBreak: "break-word",
-                                        justifyContent: "space-around",
-                                        alignItems: "center",
-                                        textAlign: "center",
-                                    }}
-                                >
+                                <ActionCard buttonHint="🔴" selected={false}>
                                     <span
                                         style={{
                                             padding: "0px 16px 16px 16px",
                                         }}
                                     >
-                                        {"apply filters"}
+                                        apply filters
                                     </span>
-                                    {/* Hang below card */}
-                                    <span
-                                        style={{
-                                            display: "flex",
-                                            position: "absolute",
-                                            left: "50%",
-                                            bottom: 0,
-                                            transform: "translate(-50%, 100%)",
-                                            // translate: '[-50, -50]'
-                                        }}
-                                    >
-                                        {"🔴"}
-                                    </span>
-                                </div>
-                                <div
-                                    id="select-algo"
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        width: "100%",
-                                        borderColor: "#B6A1BD",
-                                        borderWidth: 5,
-                                        borderRadius: 50,
-                                        wordBreak: "break-word",
-                                        justifyContent: "space-around",
-                                        alignItems: "center",
-                                        textAlign: "center",
-                                        // padding: 16
-                                    }}
-                                >
+                                </ActionCard>
+                                <ActionCard buttonHint="🔵" selected={false}>
                                     <span
                                         style={{
                                             padding: "0px 16px 16px 16px",
                                         }}
                                     >
-                                        {"select algo"}
+                                        select algo
                                     </span>
-                                    {/* Hang below card */}
-                                    <span
-                                        style={{
-                                            display: "flex",
-                                            position: "absolute",
-                                            left: "50%",
-                                            bottom: 0,
-                                            transform: "translate(-50%, 100%)",
-                                            // translate: '[-50, -50]'
-                                        }}
-                                    >
-                                        {"🔵"}
-                                    </span>
-                                </div>
+                                </ActionCard>
                             </div>
                         )}
                     </div>
