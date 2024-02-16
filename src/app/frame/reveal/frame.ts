@@ -31,7 +31,6 @@ export async function RevealFrame(props: RevealFrameProps) {
     }
     let imageParams = `?curIdx=${curIndex}`;
     // DEBUG
-    let postParams = "?";
     const { filters, algo, pfpUrl, username } = props.filtersAndAlgo;
     const urlparams = objectToSearchParams(revealData);
     const urlParamsQueryStr = urlparams.toString();
@@ -44,12 +43,16 @@ export async function RevealFrame(props: RevealFrameProps) {
             return filters[key];
         })
         .join(",");
+
+    // Post params
+    let postParams = "?";
     postParams +=
         `curIndex=${curIndex}` +
         `&filters=${filterKeys}` +
         `&algo=${algo}` +
         `&username=${username}` +
-        `&pfpUrl=${pfpUrl}`;
+        `&pfpUrl=${pfpUrl}` +
+        `&next=${revealData.next}`
 
     const buttons: FrameButton[] = [
         { action: "post", label: curIndex == 0 ? "<my-casts" : "<back" },
@@ -61,6 +64,8 @@ export async function RevealFrame(props: RevealFrameProps) {
     ];
     if (revealData.next) {
         buttons.push({ action: "post", label: "next>" })
+    } else {
+        buttons.push({ action: "post", label: "main-menu" })
     }
     // Cache bust
     // Todo: remove later

@@ -25,7 +25,7 @@ export async function MainMenuFrame(fid: number) {
         postUrl: AppConfig.hostUrl + '/frame/main-menu' + postParams,
         version: 'vNext',
         buttons: [
-            {action:'post', label: 'home'},
+            {action:'post', label: '<home'},
             {action:'post', label: 'my-casts'},
             {action:'post', label: 'trending'},
         ],

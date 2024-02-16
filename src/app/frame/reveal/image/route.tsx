@@ -80,7 +80,7 @@ export async function GET(req: NextRequest) {
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: 500,
+                            width: embedImg ? 500 : 800,
                             borderColor: "#B6A1BD",
                             borderWidth: 5,
                             borderRadius: 50,
@@ -185,7 +185,7 @@ export async function GET(req: NextRequest) {
                             transform: "translate(-50%, 0)",
                         }}
                     >go to cast</span>
-                    {next ? <span>{'next>'}</span> : null}
+                    {next ? <span>{'next>'}</span> : <span>{'<main-menu'}</span>}
                 </div>
             </FrameDiv>
         ),

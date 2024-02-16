@@ -78,7 +78,7 @@ export async function data(
                 .some((fid) => followerFids.includes(fid));
             if (!found) return false;
         }
-    });
+    }).slice(0,5);  // Show at max 5 casts
     if (filteredCasts.length < curIndex + 1) {
         // Return early
         return null;
