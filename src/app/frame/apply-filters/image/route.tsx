@@ -2,10 +2,9 @@ import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 import FrameDiv from "../../FrameDiv";
 import TopBar from "../../TopBar";
+import ActionCard from "../../ActionCard";
 
 export const runtime = "edge";
-
-const filterDisplayTexts = ["embeds", "reactions from followers", "mentions"];
 
 type Filter = {
     displayText: string;
@@ -74,45 +73,15 @@ export async function GET(req: NextRequest) {
                         const id = f.urlSearchParamKey + '-filter'
                         const selected = filterQuery.includes(f.urlSearchParamKey)
                         return (
-                            <div
-                                id={id}
-                                key={id}
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    width: "30%",
-                                    borderColor: "#B6A1BD",
-                                    borderWidth: 5,
-                                    borderRadius: 50,
-                                    backgroundColor: selected ? "#491768" : "",
-                                    wordBreak: "break-word",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    height: "100%",
-                                    textAlign: 'center'
-                                }}
+                            <ActionCard
+                                selected={selected}
+                                buttonHint={f.buttonHint} 
+                                key={f.color}
+                                width={'30%'}
                             >
-                                <span>{"has"}</span>
-                                <span
-                                    style={{
-                                        color: f.color,
-                                    }}
-                                >
-                                    {f.displayText}
-                                </span>
-                                {/* Hang below card */}
-                                <span
-                                    style={{
-                                        display: "flex",
-                                        position: "absolute",
-                                        left: "50%",
-                                        bottom: 0,
-                                        transform: "translate(-50%, 100%)",
-                                    }}
-                                >
-                                    {f.buttonHint}
-                                </span>
-                            </div>
+                               <span>has</span> 
+                               <span style={{color: f.color, padding: '0 16px 16px 16px'}}>{f.displayText}</span>
+                            </ActionCard>
                         );
                     })}
                 </div>

@@ -57,9 +57,9 @@ export async function GET(req: NextRequest) {
                             gap: 20,
                         }}
                     >
-                        <span>{"rc: " + recastCount}</span>
-                        <span>{"likes: " + likeCount}</span>
-                        <span>{"replies: " + replyCount}</span>
+                        <span>{"🔁: " + recastCount}</span>
+                        <span>{"❤️: " + likeCount}</span>
+                        <span>{"r: " + replyCount}</span>
                     </div>
                 </TopBar>
                 <div
@@ -120,7 +120,9 @@ export async function GET(req: NextRequest) {
                                 }}
                             >
                                 <span id="username">{"@" + username}</span>
-                                <span id="ago">{ago}</span>
+                                <span id="ago"
+                                    style={{fontSize: 40}}
+                                >{ago}</span>
                             </div>
                         </div>
                         <div
@@ -174,9 +176,16 @@ export async function GET(req: NextRequest) {
                         fontFamily: "mono",
                     }}
                 >
-                    <span>{curIndex == 1 ? "/my-casts" : "back"}</span>
-                    <span>go to cast</span>
-                    {next ? <span>next</span> : null}
+                    <span>{curIndex == 1 ? "<my-casts" : "<back"}</span>
+                    <span 
+                        style={{
+                            position: 'absolute',
+                            // top: 0,
+                            left: "50%",
+                            transform: "translate(-50%, 0)",
+                        }}
+                    >go to cast</span>
+                    {next ? <span>{'next>'}</span> : null}
                 </div>
             </FrameDiv>
         ),

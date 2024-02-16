@@ -1,6 +1,9 @@
 import FrameDiv from "@/src/app/frame/FrameDiv";
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
+import TopBar from "../../TopBar";
+import Pill from "../../Pill";
+import ActionCard from "../../ActionCard";
 
 export const runtime = "edge";
 
@@ -28,35 +31,10 @@ export async function GET(req: NextRequest) {
     return new ImageResponse(
         (
             <FrameDiv>
-                <div
-                    id="top-bar"
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        width: "100%",
-                        fontFamily: "mono",
-                        justifyContent: "space-between",
-                    }}
-                >
-                    <div id="current-route">
-                        {"/" + req.nextUrl.pathname.split("/").at(-2)}
-                    </div>
-                    {pfpUrl ? (
-                        <img
-                            alt="pfp"
-                            src={pfpUrl}
-                            width={pfpSize}
-                            height={pfpSize}
-                            style={{
-                                borderRadius: pfpSize / 2,
-                                position: "absolute",
-                                top: 0,
-                                left: "50%",
-                                transform: "translate(-50%, 0)",
-                            }}
-                        />
-                    ) : null}
-                </div>
+                <TopBar
+                    pfpUrl={pfpUrl}
+                    route={req.nextUrl.pathname.split("/").at(-2)}
+                />
                 <div
                     id="mid-section"
                     style={{
@@ -84,10 +62,10 @@ export async function GET(req: NextRequest) {
                             alignItems: "center",
                             height: "100%",
                             padding: 16,
-                            fontFamily: 'mono'
+                            fontFamily: "mono",
                         }}
                     >
-                            <span>filters</span>
+                        <span>filters</span>
                         <div
                             id="filters"
                             style={{
@@ -102,19 +80,7 @@ export async function GET(req: NextRequest) {
                             {filters.length == 0 ? <span>None</span> : null}
                             {filters.map((f) => {
                                 return (
-                                    <span
-                                        key={f}
-                                        id={f}
-                                        style={{
-                                            padding: "0px 10px",
-                                            borderColor: "#B6A1BD",
-                                            borderWidth: 5,
-                                            borderRadius: 50,
-                                            backgroundColor: "#7819B3",
-                                        }}
-                                    >
-                                        {f}
-                                    </span>
+                                    <Pill key={f} text={f}/>
                                 );
                             })}
                         </div>
@@ -137,17 +103,7 @@ export async function GET(req: NextRequest) {
                             }}
                         >
                             <span>algo</span>
-                            <span
-                                style={{
-                                    padding: "0px 20px 16px 20px",
-                                    borderColor: "#B6A1BD",
-                                    borderWidth: 5,
-                                    borderRadius: 50,
-                                    backgroundColor: "#7819B3",
-                                }}
-                            >
-                                {algo}
-                            </span>
+                            <Pill text={algo}/>
                         </div>
                         {/* Hang below card */}
                         <span
@@ -157,6 +113,7 @@ export async function GET(req: NextRequest) {
                                 left: "50%",
                                 bottom: 0,
                                 transform: "translate(-50%, 100%)",
+                                fontFamily: 'regular'
                             }}
                         >
                             {"Reveal"}
@@ -168,80 +125,28 @@ export async function GET(req: NextRequest) {
                             display: "flex",
                             flexDirection: "column",
                             width: "30%",
-                            // borderColor: "#B6A1BD",
-                            // borderWidth: 5,
-                            // borderRadius: 50,
                             wordBreak: "break-word",
                             justifyContent: "space-around",
                             alignItems: "center",
                             height: "100%",
                         }}
                     >
-                        <div
-                            id="apply-filters"
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                width: "100%",
-                                borderColor: "#B6A1BD",
-                                borderWidth: 5,
-                                borderRadius: 50,
-                                wordBreak: "break-word",
-                                justifyContent: "space-around",
-                                alignItems: "center",
-                                textAlign: "center",
-                            }}
+                        <ActionCard
+                            buttonHint="🔴" 
+                            selected={false}
                         >
                             <span style={{ padding: "0px 16px 16px 16px" }}>
                                 {"apply filters"}
                             </span>
-                            {/* Hang below card */}
-                            <span
-                                style={{
-                                    display: "flex",
-                                    position: "absolute",
-                                    left: "50%",
-                                    bottom: 0,
-                                    transform: "translate(-50%, 100%)",
-                                    // translate: '[-50, -50]'
-                                }}
-                            >
-                                {"🔴"}
-                            </span>
-                        </div>
-                        <div
-                            id="select-algo"
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                width: "100%",
-                                borderColor: "#B6A1BD",
-                                borderWidth: 5,
-                                borderRadius: 50,
-                                wordBreak: "break-word",
-                                justifyContent: "space-around",
-                                alignItems: "center",
-                                textAlign: "center",
-                                // padding: 16
-                            }}
+                        </ActionCard>
+                        <ActionCard
+                            selected={false}
+                            buttonHint="🔵" 
                         >
                             <span style={{ padding: "0px 16px 16px 16px" }}>
                                 {"select algo"}
                             </span>
-                            {/* Hang below card */}
-                            <span
-                                style={{
-                                    display: "flex",
-                                    position: "absolute",
-                                    left: "50%",
-                                    bottom: 0,
-                                    transform: "translate(-50%, 100%)",
-                                    // translate: '[-50, -50]'
-                                }}
-                            >
-                                {"🔵"}
-                            </span>
-                        </div>
+                        </ActionCard>
                     </div>
                 </div>
                 <div
@@ -252,9 +157,10 @@ export async function GET(req: NextRequest) {
                         width: "100%",
                         justifyContent: "space-between",
                         fontFamily: "mono",
+                        fontSize: 40,
                     }}
                 >
-                    <span>/main-menu</span>
+                    <span>{"<main-menu"}</span>
                 </div>
             </FrameDiv>
         ),

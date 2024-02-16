@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         // Case 1: pressed refresh
         return HomeFrame()
     } else if (data.untrustedData.buttonIndex == 2) {
-        // Case 2: pressed main-menu
+        // Case 2: pressed load
         // - go to main-menu
         return MainMenuFrame(data.untrustedData.fid)
     } else {

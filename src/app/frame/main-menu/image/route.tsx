@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
                         width: "100%",
                         justifyContent: "center",
                         alignItems: "center",
-                        height: '70%',
+                        // height: '70%',
                         gap: 50
                     }}
                 >
@@ -47,14 +47,15 @@ export async function GET(req: NextRequest) {
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: "40%",
+                            width: "30%",
                             borderColor: "#B6A1BD",
                             borderWidth: 5,
                             borderRadius: 50,
                             wordBreak: "break-word",
                             justifyContent: "space-around",
                             alignItems: "center",
-                            height: '100%'
+                            height: '100%',
+                            paddingBottom: 16
                         }}
                     >
                         <span>{"my casts"}</span>
@@ -64,7 +65,7 @@ export async function GET(req: NextRequest) {
                                 display: "flex",
                                 position: "absolute",
                                 left: "50%",
-                                bottom: 0,
+                                bottom: -10,
                                 transform: 'translate(-50%, 100%)',
                             }}
                         >
@@ -76,14 +77,15 @@ export async function GET(req: NextRequest) {
                             style={{
                                 display: "flex",
                                 flexDirection: "column",
-                                width: "40%",
+                                width: "30%",
                                 borderColor: "#B6A1BD",
                                 borderWidth: 5,
                                 borderRadius: 50,
                                 wordBreak: "break-word",
                                 justifyContent: "space-around",
                                 alignItems: "center",
-                                height: '100%'
+                                height: '100%',
+                                paddingBottom: 16
                             }}
                         >
                             <span>{'trending'}</span>
@@ -93,7 +95,7 @@ export async function GET(req: NextRequest) {
                                     display: "flex",
                                     position: "absolute",
                                     left: "50%",
-                                    bottom: 0,
+                                    bottom: -10,
                                     transform: 'translate(-50%, 100%)',
                                     // translate: '[-50, -50]'
                                 }}
@@ -106,12 +108,13 @@ export async function GET(req: NextRequest) {
                     style={{
                         display: 'flex',
                         flexDirection: 'row',
+                        fontSize: 40,
                         width: '100%',
                         justifyContent: 'space-between',
                         fontFamily: 'mono'
                     }}
                 >
-                    <span>/home</span>
+                    <span>{'<home'}</span>
                 </div>
             </FrameDiv>
         ),

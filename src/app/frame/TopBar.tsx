@@ -4,9 +4,10 @@ type TopBarProps = {
     pfpUrl?: string | null
     route?: string
     pfpSize?: number
+    fontSize?: number
 }
 export default function TopBar(props: TopBarProps) {
-    const {pfpUrl, route, justifyContent, children} = props
+    const {pfpUrl, route, justifyContent, children, fontSize} = props
     const pfpSize = props.pfpSize ?? 100
     return (
                 <div
@@ -16,7 +17,7 @@ export default function TopBar(props: TopBarProps) {
                         flexDirection: "row",
                         width: "100%",
                         fontFamily: "mono",
-                        fontSize: 40,
+                        fontSize: fontSize ?? 50,
                         justifyContent: justifyContent ?? 'space-between',
                     }}
                 >
