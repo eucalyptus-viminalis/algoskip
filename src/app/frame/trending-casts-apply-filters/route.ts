@@ -57,16 +57,16 @@ export async function POST(req: NextRequest) {
     } else if (data.untrustedData.buttonIndex == 4) {
         // Case 4: pressed Done button
         // = go to my-casts with filters
-        return TrendingCastsApplyFiltersFrame({
+        return TrendingCastsFrame({
             algo: algo,
             filters: {
-                embeds: filters?.includes('embeds'),
-                followerReactions: filters?.includes('followerReactions'),
-                mentions: filters?.includes('mentions')
+                embeds: filters.includes('embeds'),
+                followerReactions: filters.includes('followerReactions'),
+                mentions: filters.includes('mentions')
             },
             username: username,
             pfpUrl: pfpUrl,
-            channel: channel
+            channel: channel,
         } as TrendingCastsFrameParams)
     }
 }
