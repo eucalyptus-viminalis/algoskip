@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
     // Params
     const filters = req.nextUrl.searchParams.get('filters') ?? ''
     const algo = req.nextUrl.searchParams.get('algo')
-    const channel = req.nextUrl.searchParams.get('algo')!
+    const channel = req.nextUrl.searchParams.get('channel')!
     const username = req.nextUrl.searchParams.get('username')!
     const pfpUrl = req.nextUrl.searchParams.get('pfpUrl')!
 
