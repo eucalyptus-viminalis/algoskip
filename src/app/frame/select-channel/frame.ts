@@ -24,7 +24,7 @@ export async function SelectChannelFrame(params: SelectChannelFrameParams) {
 
     let postParams = "?";
     postParams += `channelFilter=${channelFilter}&skip=${skip ?? ""}`
-    postParams += `channel=${channel ?? ''}filters=${filterKeys}&algo=${algo ?? ''}&pfpUrl=${pfpUrl}&username=${username}`;
+    postParams += `channel=${channel ?? ''}&filters=${filterKeys}&algo=${algo ?? ''}&pfpUrl=${pfpUrl}&username=${username}`;
 
     let buttons: FrameButton[] = [];
     let imageParams = "?";
