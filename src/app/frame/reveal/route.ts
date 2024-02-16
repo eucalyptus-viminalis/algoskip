@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
                 } as MyCastsFrameParams,
             });
         } else {
-            MainMenuFrame(data.untrustedData.fid);
+            return MainMenuFrame(data.untrustedData.fid);
         }
     }
 }
