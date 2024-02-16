@@ -194,7 +194,15 @@ export async function GET(req: NextRequest) {
                         }}
                     >
                         {!channel ? (
-                            <>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                    gap: 16,
+                                    alignItems: "center",
+                                }}
+                            >
                                 <span>Step 1</span>
                                 <div
                                     id="select-channel"
@@ -232,9 +240,17 @@ export async function GET(req: NextRequest) {
                                         {"🔴"}
                                     </span>
                                 </div>
-                            </>
+                            </div>
                         ) : (
-                            <>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "space-between",
+                                    gap: 16,
+                                    alignItems: "center",
+                                }}
+                            >
                                 <div
                                     id="apply-filters"
                                     style={{
@@ -308,7 +324,7 @@ export async function GET(req: NextRequest) {
                                         {"🔵"}
                                     </span>
                                 </div>
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>

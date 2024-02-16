@@ -6,6 +6,7 @@ import { TrendingCastsFrameParams } from "./frame";
 import { ChannelFilterFrame } from "../channel-filter/frame";
 import { TrendingCastsApplyFiltersFrame } from "../trending-casts-apply-filters/frame";
 import { TrendingCastsSelectAlgoFrame } from "../trending-casts-select-algo/frame";
+import { TrendingRevealFrame } from "../trending-reveal/frame";
 
 export async function POST(req: NextRequest) {
     // Params
@@ -88,25 +89,23 @@ export async function POST(req: NextRequest) {
         }
     } else if (data.untrustedData.buttonIndex == 4) {
         if (channel && algo) {
-            // Case 1: channel selected
-            return ErrorFrame()
-            // TODO:
-            // return TrendingRevealFrame({
-            //     curIndex: 0,
-            //     fid: data.untrustedData.fid,
-            //     filtersAndAlgo: {
-            //         channel: channel,
-            //         algo: algo,
-            //         filters: {
-            //             embeds: filters?.includes("embeds"),
-            //             followerReactions:
-            //                 filters?.includes("followerReactions"),
-            //             mentions: filters?.includes("mentions"),
-            //         },
-            //         pfpUrl: pfpUrl,
-            //         username: username,
-            //     } as TrendingCastsFrameParams,
-            // });
+            // Reveal first cast result
+            return TrendingRevealFrame({
+                curIndex: 0,
+                fid: data.untrustedData.fid,
+                filtersAndAlgo: {
+                    channel: channel,
+                    algo: algo,
+                    filters: {
+                        embeds: filters?.includes("embeds"),
+                        followerReactions:
+                            filters?.includes("followerReactions"),
+                        mentions: filters?.includes("mentions"),
+                    },
+                    pfpUrl: pfpUrl,
+                    username: username,
+                } as TrendingCastsFrameParams,
+            });
         } else {
             // Case 2: channel not yet selected
             // NOTE: This route should not be available
