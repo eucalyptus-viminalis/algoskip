@@ -16,11 +16,12 @@ export default function TopBar(props: TopBarProps) {
                         flexDirection: "row",
                         width: "100%",
                         fontFamily: "mono",
+                        fontSize: 40,
                         justifyContent: justifyContent ?? 'space-between',
                     }}
                 >
                     {route ? (
-                        <div id="current-route">
+                        <div id="current-route" >
                             {"/" + route}
                         </div>
                     ):null}
