@@ -45,7 +45,7 @@ export async function TrendingRevealFrame(props: TrendingRevealFrameProps) {
 
     let imageParams = `?curIdx=${curIndex}`
     imageParams += '&' + urlParamsQueryStr
-        + `&pfpUrl=${revealData.pfpUrl}&username=${revealData.username}`
+    imageParams += `&channel=${channel}`
 
     // Post params
     let postParams = '?'
