@@ -74,17 +74,17 @@ export async function GET(req: NextRequest) {
                         >
                             <span>channel</span>
                             {channel ? (
-                            <span
-                                style={{
-                                    padding: "0px 20px 16px 20px",
-                                    borderColor: "#B6A1BD",
-                                    borderWidth: 5,
-                                    borderRadius: 50,
-                                    backgroundColor: "#7819B3",
-                                }}
-                            >
-                                {channel}
-                            </span>
+                                <span
+                                    style={{
+                                        padding: "0px 20px 16px 20px",
+                                        borderColor: "#B6A1BD",
+                                        borderWidth: 5,
+                                        borderRadius: 50,
+                                        backgroundColor: "#7819B3",
+                                    }}
+                                >
+                                    {channel}
+                                </span>
                             ) : (
                                 <span>None</span>
                             )}
@@ -147,34 +147,34 @@ export async function GET(req: NextRequest) {
                         >
                             <span>algo</span>
                             {algo ? (
-                            <span
-                                style={{
-                                    padding: "0px 20px 16px 20px",
-                                    borderColor: "#B6A1BD",
-                                    borderWidth: 5,
-                                    borderRadius: 50,
-                                    backgroundColor: "#7819B3",
-                                }}
-                            >
-                                {algo}
-                            </span>
+                                <span
+                                    style={{
+                                        padding: "0px 20px 16px 20px",
+                                        borderColor: "#B6A1BD",
+                                        borderWidth: 5,
+                                        borderRadius: 50,
+                                        backgroundColor: "#7819B3",
+                                    }}
+                                >
+                                    {algo}
+                                </span>
                             ) : (
                                 <span>None</span>
                             )}
                         </div>
                         {/* Hang below card */}
                         {channel && algo ? (
-                        <span
-                            style={{
-                                display: "flex",
-                                position: "absolute",
-                                left: "50%",
-                                bottom: 0,
-                                transform: "translate(-50%, 100%)",
-                            }}
-                        >
-                            {"Reveal"}
-                        </span>
+                            <span
+                                style={{
+                                    display: "flex",
+                                    position: "absolute",
+                                    left: "50%",
+                                    bottom: 0,
+                                    transform: "translate(-50%, 100%)",
+                                }}
+                            >
+                                {"Reveal"}
+                            </span>
                         ) : null}
                     </div>
                     <div
@@ -193,39 +193,123 @@ export async function GET(req: NextRequest) {
                             height: "100%",
                         }}
                     >
-                        <span>Step 1</span>
-                        <div
-                            id="select-channel"
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                width: "100%",
-                                borderColor: "#B6A1BD",
-                                borderWidth: 5,
-                                borderRadius: 50,
-                                wordBreak: "break-word",
-                                justifyContent: "space-around",
-                                alignItems: "center",
-                                textAlign: "center",
-                            }}
-                        >
-                            <span style={{ padding: "0px 16px 16px 16px" }}>
-                                {"select channel"}
-                            </span>
-                            {/* Hang below card */}
-                            <span
-                                style={{
-                                    display: "flex",
-                                    position: "absolute",
-                                    left: "50%",
-                                    bottom: 0,
-                                    transform: "translate(-50%, 100%)",
-                                    // translate: '[-50, -50]'
-                                }}
-                            >
-                                {"🔴"}
-                            </span>
-                        </div>
+                        {!channel ? (
+                            <>
+                                <span>Step 1</span>
+                                <div
+                                    id="select-channel"
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        width: "100%",
+                                        borderColor: "#B6A1BD",
+                                        borderWidth: 5,
+                                        borderRadius: 50,
+                                        wordBreak: "break-word",
+                                        justifyContent: "space-around",
+                                        alignItems: "center",
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    <span
+                                        style={{
+                                            padding: "0px 16px 16px 16px",
+                                        }}
+                                    >
+                                        {"select channel"}
+                                    </span>
+                                    {/* Hang below card */}
+                                    <span
+                                        style={{
+                                            display: "flex",
+                                            position: "absolute",
+                                            left: "50%",
+                                            bottom: 0,
+                                            transform: "translate(-50%, 100%)",
+                                            // translate: '[-50, -50]'
+                                        }}
+                                    >
+                                        {"🔴"}
+                                    </span>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div
+                                    id="apply-filters"
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        width: "100%",
+                                        borderColor: "#B6A1BD",
+                                        borderWidth: 5,
+                                        borderRadius: 50,
+                                        wordBreak: "break-word",
+                                        justifyContent: "space-around",
+                                        alignItems: "center",
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    <span
+                                        style={{
+                                            padding: "0px 16px 16px 16px",
+                                        }}
+                                    >
+                                        {"apply filters"}
+                                    </span>
+                                    {/* Hang below card */}
+                                    <span
+                                        style={{
+                                            display: "flex",
+                                            position: "absolute",
+                                            left: "50%",
+                                            bottom: 0,
+                                            transform: "translate(-50%, 100%)",
+                                            // translate: '[-50, -50]'
+                                        }}
+                                    >
+                                        {"🔴"}
+                                    </span>
+                                </div>
+                                <div
+                                    id="select-algo"
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        width: "100%",
+                                        borderColor: "#B6A1BD",
+                                        borderWidth: 5,
+                                        borderRadius: 50,
+                                        wordBreak: "break-word",
+                                        justifyContent: "space-around",
+                                        alignItems: "center",
+                                        textAlign: "center",
+                                        // padding: 16
+                                    }}
+                                >
+                                    <span
+                                        style={{
+                                            padding: "0px 16px 16px 16px",
+                                        }}
+                                    >
+                                        {"select algo"}
+                                    </span>
+                                    {/* Hang below card */}
+                                    <span
+                                        style={{
+                                            display: "flex",
+                                            position: "absolute",
+                                            left: "50%",
+                                            bottom: 0,
+                                            transform: "translate(-50%, 100%)",
+                                            // translate: '[-50, -50]'
+                                        }}
+                                    >
+                                        {"🔵"}
+                                    </span>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
                 <div
