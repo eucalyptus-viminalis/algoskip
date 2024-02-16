@@ -62,7 +62,7 @@ export async function getData(fid: number, filter: ChannelFilter): Promise<Chann
             id: string,
         }[] = topChannels.map(c=> {
             return {
-                id: c.id,
+                id: c.id ?? c.name,
             }
         })
         return channelFrameData
