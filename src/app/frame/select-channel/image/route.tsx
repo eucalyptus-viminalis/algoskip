@@ -80,7 +80,7 @@ export async function GET(req: NextRequest) {
                                 </span>
                             ) : null}
                             {option1CountMutuals ? (
-                                <span style={{fontFamily: 'mono'}}>
+                                <span style={{fontFamily: 'mono', fontSize: 40}}>
                                     {"from mutuals"}
                                 </span>
                             ) : null}
@@ -128,7 +128,7 @@ export async function GET(req: NextRequest) {
                                 <span>{option2Count1Day + " casts"}</span>
                             ) : null}
                             {option2CountMutuals ? (
-                                <span style={{fontFamily: 'mono'}}>
+                                <span style={{fontFamily: 'mono', fontSize: 40}}>
                                     {"from mutuals"}
                                 </span>
                             ) : null}
