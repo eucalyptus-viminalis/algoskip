@@ -85,7 +85,7 @@ export async function GET(req: NextRequest) {
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: 500,
+                            width: embedImg ? 500 : 800,
                             borderColor: "#B6A1BD",
                             borderWidth: 5,
                             borderRadius: 50,
@@ -183,9 +183,16 @@ export async function GET(req: NextRequest) {
                         fontFamily: "mono",
                     }}
                 >
-                    <span>{curIndex == 1 ? "/my-casts" : "back"}</span>
-                    <span>go to cast</span>
-                    {next ? <span>next</span> : null}
+                    <span>{curIndex == 1 ? "<trending-casts" : "<back"}</span>
+                    <span 
+                        style={{
+                            position: 'absolute',
+                            // top: 0,
+                            left: "50%",
+                            transform: "translate(-50%, 0)",
+                        }}
+                    >go to cast</span>
+                    {next ? <span>{'next>'}</span> : null}
                 </div>
             </FrameDiv>
         ),

@@ -2,6 +2,7 @@ import { FrameActionPayload } from "frames.js";
 import { NextRequest } from "next/server";
 import { TrendingCastsFrame, TrendingCastsFrameParams } from "../trending-casts/frame";
 import { TrendingRevealFrame } from "./frame";
+import { MainMenuFrame } from "../main-menu/frame";
 
 export async function POST(req: NextRequest) {
     // Params
@@ -11,6 +12,7 @@ export async function POST(req: NextRequest) {
     const channel = req.nextUrl.searchParams.get('channel')!
     const username = req.nextUrl.searchParams.get("username")!;
     const pfpUrl = req.nextUrl.searchParams.get("pfpUrl")!;
+    const next = req.nextUrl.searchParams.get("next")!;
 
     // Frame data
     const data: FrameActionPayload = await req.json();
@@ -53,6 +55,7 @@ export async function POST(req: NextRequest) {
         // No need to handle, handled by link button action type
     } else if (data.untrustedData.buttonIndex == 3) {
         // Go next
+        if (next == 'true') {
         return TrendingRevealFrame({
             curIndex: curIndex + 1,
             fid: data.untrustedData.fid,
@@ -68,5 +71,8 @@ export async function POST(req: NextRequest) {
                 channel: channel
             } as TrendingCastsFrameParams,
         });
+        } else {
+            return MainMenuFrame(data.untrustedData.fid)
+        }
     }
 }

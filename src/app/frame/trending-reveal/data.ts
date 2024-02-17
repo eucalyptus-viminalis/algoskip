@@ -86,7 +86,7 @@ export async function data(
             if (!found) return false;
         }
         return true
-    });
+    }).slice(0, 5);
     if (filteredCasts.length < curIndex + 1) {
         // Return early
         return null;

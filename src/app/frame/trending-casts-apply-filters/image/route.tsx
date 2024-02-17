@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
         (
             <FrameDiv>
                 <TopBar
-                    route={req.nextUrl.pathname.split("/").at(-2)}
+                    route={'apply-filters'}
                     pfpUrl={pfpUrl}
                 />
                 <div
