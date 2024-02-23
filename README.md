@@ -1,5 +1,22 @@
 # algoskip
 
+\> _extensible diy feed algos in a frame_
+
+\> _skip the algorithm_
+
+---
+
+__Table of Contents__
+
+1. [Demo](#demo)
+2. [Overview](#overview)
+3. [Motivation](#motivation)
+4. [Workflows](#workflows)
+5. [Get Started](#get-started)
+6. [Contributors](#contributors)
+
+## Demo
+
 Live on warpcast: https://warpcast.com/3070/0xe5770891
 
 > Developers: To learn how to run the app, please skip to [Get Started](#get-started)
@@ -16,7 +33,6 @@ Interact with _algoskip_ using _Warpcast_'s frame validator tool with the below 
 
 <img width="570" alt="image" src="https://github.com/eucalyptus-viminalis/algoskip/assets/65995595/9d1884b6-e345-45b3-a4ca-23d7e1d9564a">
 
-## 
 
 ## Overview
 
