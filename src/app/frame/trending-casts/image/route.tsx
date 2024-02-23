@@ -228,7 +228,7 @@ export async function GET(req: NextRequest) {
                         fontFamily: "mono",
                     }}
                 >
-                    <span>/main-menu</span>
+                    <span>{channel ? 'select-channel' : '<main-menu'}</span>
                 </div>
             </FrameDiv>
         ),
