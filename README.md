@@ -1,5 +1,11 @@
 # algoskip
 
+\> _extensible diy feed algos in a frame_
+
+\> _skip the algorithm_
+
+---
+
 Live on warpcast: https://warpcast.com/3070/0xe5770891
 
 > Developers: To learn how to run the app, please skip to [Get Started](#get-started)
