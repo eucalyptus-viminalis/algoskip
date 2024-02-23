@@ -3,6 +3,18 @@ import { NextRequest } from "next/server";
 import { HomeFrame } from "../home/frame";
 import { MyCastsFrame } from "../my-casts/frame";
 import { TrendingCastsFrame } from "../trending-casts/frame";
+import { ErrorFrame } from "../error/frame";
+import { MainMenuFrame } from "./frame";
+
+export async function GET(req: NextRequest) {
+    const fid = req.nextUrl.searchParams.get('fid')
+    if (!fid) {
+        return new Response('missing param: "fid"', {status: 400})
+    } else if (isNaN(parseInt(fid))) {
+        return new Response('"fid" must be a number', {status: 400})
+    }
+    return MainMenuFrame(+fid)
+}
 
 export async function POST(req: NextRequest) {
     // Params

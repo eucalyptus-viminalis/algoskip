@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { FrameActionPayload } from "frames.js";
 import { HomeFrame } from "./frame";
 import { ErrorFrame } from "../error/frame";
-import { MainMenuFrame } from "../main-menu/frame";
+import { AppConfig } from "../../AppConfig";
 
 export function GET() {
     return HomeFrame()
@@ -17,7 +17,9 @@ export async function POST(req: NextRequest) {
     } else if (data.untrustedData.buttonIndex == 2) {
         // Case 2: pressed load
         // - go to main-menu
-        return MainMenuFrame(data.untrustedData.fid)
+        const res = await fetch(AppConfig.hostUrl + `/frame/main-menu?fid=${data.untrustedData.fid}`)
+        return new Response(res.body, {headers: {'content-type': 'text/html'}})
+
     } else {
         return ErrorFrame(null, 'Bad route.')
     }
