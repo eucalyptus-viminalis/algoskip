@@ -17,6 +17,8 @@ export function HomeFrame() {
             <h1>algoskip</h1>
             <p>skip the algorithm.</p>
             <p>a frame by 3070</p>
+            <p>GitHub: https://github.com/eucalyptus-viminalis/algoskip</p>
+            <p>Live on Warpcast: https://warpcast.com/3070/0xe5770891</p>
         `,
         // htmlHead: "",
         og: { title: "home | algoskip" },
