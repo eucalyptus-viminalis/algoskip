@@ -183,7 +183,7 @@ export async function GET(req: NextRequest) {
                         fontFamily: "mono",
                     }}
                 >
-                    <span>{curIndex == 1 ? "<trending-casts" : "<back"}</span>
+                    <span>{curIndex == 1 ? "<trending" : "<back"}</span>
                     <span 
                         style={{
                             position: 'absolute',
