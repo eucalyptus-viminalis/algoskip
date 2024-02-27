@@ -3,9 +3,11 @@ import { NextRequest } from "next/server";
 import { HomeFrame } from "../home/frame";
 import { MyCastsFrame } from "../my-casts/frame";
 import { TrendingCastsFrame } from "../trending-casts/frame";
-import { ErrorFrame } from "../error/frame";
 import { MainMenuFrame } from "./frame";
 
+// GET: /frame/main-menu
+// Params:
+// - fid
 export async function GET(req: NextRequest) {
     const fid = req.nextUrl.searchParams.get('fid')
     if (!fid) {
@@ -16,6 +18,10 @@ export async function GET(req: NextRequest) {
     return MainMenuFrame(+fid)
 }
 
+// POST: /frame/main-menu
+// Params:
+// - username
+// - pfpUrl
 export async function POST(req: NextRequest) {
     // Params
     const username = req.nextUrl.searchParams.get('username')!
