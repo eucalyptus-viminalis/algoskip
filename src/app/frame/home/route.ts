@@ -13,7 +13,8 @@ export async function POST(req: NextRequest) {
     // Route request
     if (data.untrustedData.buttonIndex == 1) {
         // Case 1: pressed refresh
-        return HomeFrame()
+        const res = await fetch(AppConfig.hostUrl + `/frame/home`)
+        return new Response(res.body, {headers: {'content-type': 'text/html'}})
     } else if (data.untrustedData.buttonIndex == 2) {
         // Case 2: pressed load
         // - go to main-menu
@@ -21,7 +22,9 @@ export async function POST(req: NextRequest) {
         return new Response(res.body, {headers: {'content-type': 'text/html'}})
 
     } else {
-        return ErrorFrame(null, 'Bad route.')
+        const errorMsg = encodeURIComponent('Bad route.')
+        const res = await fetch(AppConfig.hostUrl + `/frame/error?errorMsg=${errorMsg}`)
+        return new Response(res.body, {headers: {'content-type': 'text/html'}})
     }
 }
 
