@@ -1,9 +1,8 @@
 import { FrameActionPayload } from "frames.js";
 import { NextRequest } from "next/server";
-import { HomeFrame } from "../home/frame";
-import { MyCastsFrame } from "../my-casts/frame";
-import { TrendingCastsFrame } from "../trending-casts/frame";
 import { MainMenuFrame } from "./frame";
+import { AppConfig } from "../../AppConfig";
+import { URLSearchParams } from "next/dist/compiled/@edge-runtime/primitives/url";
 
 // GET: /frame/main-menu
 // Params:
@@ -31,32 +30,28 @@ export async function POST(req: NextRequest) {
     // Route request
     if (data.untrustedData.buttonIndex == 1) {
         // Case 1: pressed home button
-        return HomeFrame()
+        const res = await fetch(AppConfig.hostUrl + `/frame/home`)
+        return new Response(res.body, {headers: {'content-type': 'text/html'}})
     } else if (data.untrustedData.buttonIndex == 2) {
         // Case 2: pressed my-casts button
-        // TODO
-        return MyCastsFrame({
-            filters: {
-                embeds: false,
-                followerReactions: false,
-                mentions: false
-            },
-            algo: 'latest',
-            username: username,
-            pfpUrl: pfpUrl
-        })
+        const fetchParams = new URLSearchParams()
+        fetchParams.set('algo', 'latest')
+        fetchParams.set('pfpUrl', pfpUrl)
+        fetchParams.set('username', username)
+        const res = await fetch(AppConfig.hostUrl + '/frame/my-casts?' + fetchParams)
+        return new Response(res.body, {headers: {'content-type': 'text/html'}})
     } else if (data.untrustedData.buttonIndex == 3) {
         // Case 3: pressed trending-casts button
-        return TrendingCastsFrame({
-            filters: {
-                embeds: false,
-                followerReactions: false,
-                mentions: false,
-            },
-            pfpUrl,
-            username,
-            // algo:,
-            // channel: ,
-        })
+        const fetchParams = new URLSearchParams()
+        fetchParams.set('pfpUrl', pfpUrl)
+        fetchParams.set('username', username)
+        const res = await fetch(AppConfig.hostUrl + '/frame/trending-casts?' + fetchParams)
+        return new Response(res.body, {headers: {'content-type': 'text/html'}})
+    } else {
+        // Bad route
+        const fetchParams = new URLSearchParams()
+        fetchParams.set('errorMsg', 'Bad route.')
+        const res = await fetch(AppConfig.hostUrl + '/frame/error?' + fetchParams)
+        return new Response(res.body, {headers: {'content-type': 'text/html'}})
     }
 }
