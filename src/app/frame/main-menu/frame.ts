@@ -10,19 +10,21 @@ export type MainMenuData = {
 export async function MainMenuFrame(fid: number) {
 
     const data = await getData(fid)
-    let imageParams = '?'
-    imageParams += `pfpUrl=${data.pfpUrl}`
 
-    let postParams = '?'
-    postParams += `pfpUrl=${data.pfpUrl}`
-        + `&username=${data.username}`
+    const imageParams = new URLSearchParams()
+    const postParams = new URLSearchParams()
+
+    imageParams.set('pfpUrl', data.pfpUrl)
+    postParams.set('pfpUrl', data.pfpUrl)
+    postParams.set('username', data.username)
 
     // Cache bust
     // TODO: Remove this later
-    imageParams += `&date=${Date.now()}`
+    imageParams.set('date', Date.now().toString())
+
     const frame: Frame = {
-        image: AppConfig.hostUrl + '/frame/main-menu/image' + imageParams,
-        postUrl: AppConfig.hostUrl + '/frame/main-menu' + postParams,
+        image: AppConfig.hostUrl + '/frame/main-menu/image?' + imageParams,
+        postUrl: AppConfig.hostUrl + '/frame/main-menu?' + postParams,
         version: 'vNext',
         buttons: [
             {action:'post', label: '<home'},
@@ -31,7 +33,7 @@ export async function MainMenuFrame(fid: number) {
         ],
         imageAspectRatio: '1.91:1',
         // inputText: ,
-        ogImage: AppConfig.hostUrl + '/frame/main-menu/image' + imageParams,
+        ogImage: AppConfig.hostUrl + '/frame/main-menu/image?' + imageParams,
     }
     const html = getFrameHtml(frame, {
         // htmlBody,
