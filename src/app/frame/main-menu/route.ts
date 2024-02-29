@@ -2,7 +2,6 @@ import { FrameActionPayload } from "frames.js";
 import { NextRequest } from "next/server";
 import { MainMenuFrame } from "./frame";
 import { AppConfig } from "../../AppConfig";
-import { URLSearchParams } from "next/dist/compiled/@edge-runtime/primitives/url";
 
 // GET: /frame/main-menu
 // Params:
