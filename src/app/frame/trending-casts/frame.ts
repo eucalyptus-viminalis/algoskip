@@ -1,13 +1,17 @@
 import { Frame, FrameButtonsType, getFrameHtml } from "frames.js";
 import { AppConfig } from "../../AppConfig";
 
+export enum Algo {
+    popular, latest, reactionsPerWord
+}
+
 export type TrendingCastsFrameParams = {
     filters: {
         embeds: boolean;
         followerReactions: boolean;
         mentions: boolean;
     }
-    algo?: "popular" | "latest" | "reactionsPerWord"
+    algo?: keyof typeof Algo
     channel?: string
     username: string
     pfpUrl: string
