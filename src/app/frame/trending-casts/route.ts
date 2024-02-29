@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
         },
         pfpUrl,
         username,
-        algo: algo as keyof typeof Algo ?? undefined,
+        algo: algo as Algo ?? undefined,
         channel: channel ?? undefined,
     }
     return TrendingCastsFrame(params)
