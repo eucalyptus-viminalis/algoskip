@@ -1,0 +1,216 @@
+{
+    "result": {
+        "casts": [
+            {
+                "hash": "0xb18e2dbc55abc121cb786ab9950c2a42bb594180",
+                "parentHash": null,
+                "parentUrl": "https://warpcast.com/~/channel/lilgents",
+                "rootParentUrl": "https://warpcast.com/~/channel/lilgents",
+                "threadHash": "0xb18e2dbc55abc121cb786ab9950c2a42bb594180",
+                "parentAuthor": {
+                    "fid": null
+                },
+                "author": {
+                    "fid": 13642,
+                    "custodyAddress": "0x859f83fab3c1bbd44ab27ee3263f70685bc8429b",
+                    "username": "3070",
+                    "displayName": "3070 🎩-'",
+                    "pfp": {
+                        "url": "https://i.imgur.com/P0UVr7h.gif"
+                    },
+                    "profile": {
+                        "bio": {
+                            "text": "just looking",
+                            "mentionedProfiles": []
+                        }
+                    },
+                    "followerCount": 706,
+                    "followingCount": 418,
+                    "verifications": [
+                        "0xea990ae72939b8751cb680919c6b64a05b8e1451"
+                    ],
+                    "activeStatus": "active"
+                },
+                "text": "sheesh we made it bois\n\ndid yk u can literally view top holders of lil gents live from this frame and go their wc profile to hit that follow?\n\nwow.\n\nlil gents r in the special handcurated browse list. hit the random few times mbe\n\nhttps://interframe-eight.vercel.app/api/home",
+                "timestamp": "2024-02-14T11:15:22.000Z",
+                "embeds": [
+                    {
+                        "url": "https://interframe-eight.vercel.app/api/home"
+                    }
+                ],
+                "mentionedProfiles": [],
+                "reactions": {
+                    "count": 2,
+                    "fids": [
+                        328524,
+                        252863
+                    ],
+                    "fnames": [
+                        "pdf",
+                        "koplak8"
+                    ]
+                },
+                "recasts": {
+                    "count": 2,
+                    "fids": [
+                        328524,
+                        252863
+                    ]
+                },
+                "recasters": [
+                    "pdf",
+                    "koplak8"
+                ],
+                "replies": {
+                    "count": 1
+                },
+                "frames": [
+                    {
+                        "version": "vNext",
+                        "title": "interframe",
+                        "image": "https://interframe-eight.vercel.app/api/image/home?date=1707970488190",
+                        "buttons": [
+                            {
+                                "index": 1,
+                                "title": "home",
+                                "action_type": "post"
+                            },
+                            {
+                                "index": 2,
+                                "title": "browse",
+                                "action_type": "post"
+                            },
+                            {
+                                "index": 3,
+                                "title": "search",
+                                "action_type": "post"
+                            },
+                            {
+                                "index": 4,
+                                "title": "interframe?",
+                                "action_type": "post"
+                            }
+                        ],
+                        "input": {},
+                        "post_url": "https://interframe-eight.vercel.app/api/home",
+                        "frames_url": "https://interframe-eight.vercel.app/api/home"
+                    }
+                ]
+            },
+            {
+                "hash": "0xf2d6c92445e692ba7163b5071972009677f2c5d1",
+                "parentHash": "0xb18e2dbc55abc121cb786ab9950c2a42bb594180",
+                "parentUrl": null,
+                "rootParentUrl": "https://warpcast.com/~/channel/lilgents",
+                "threadHash": "0xb18e2dbc55abc121cb786ab9950c2a42bb594180",
+                "parentAuthor": {
+                    "fid": "13642"
+                },
+                "author": {
+                    "fid": 328524,
+                    "custodyAddress": "0xeda5d99dce69824b44ad9a5eb6d7919d6496a176",
+                    "username": "pdf",
+                    "displayName": "Premiata Dance's Floor 🎩🔹",
+                    "pfp": {
+                        "url": "https://i.imgur.com/BaEhEFB.jpg"
+                    },
+                    "profile": {
+                        "bio": {
+                            "text": "@pdf FID : 328524 🐺",
+                            "mentionedProfiles": []
+                        }
+                    },
+                    "followerCount": 533,
+                    "followingCount": 1035,
+                    "verifications": [
+                        "0xeda5d99dce69824b44ad9a5eb6d7919d6496a176"
+                    ],
+                    "activeStatus": "inactive"
+                },
+                "text": "111 $DEGEN",
+                "timestamp": "2024-02-14T11:30:23.000Z",
+                "embeds": [],
+                "mentionedProfiles": [],
+                "reactions": {
+                    "count": 0,
+                    "fids": []
+                },
+                "recasts": {
+                    "count": 0,
+                    "fids": []
+                },
+                "recasters": [],
+                "replies": {
+                    "count": 1
+                }
+            },
+            {
+                "hash": "0xa65f89de25658bc63a7a57ba70be5c5608adbdd5",
+                "parentHash": "0xf2d6c92445e692ba7163b5071972009677f2c5d1",
+                "parentUrl": null,
+                "rootParentUrl": "https://warpcast.com/~/channel/lilgents",
+                "threadHash": "0xb18e2dbc55abc121cb786ab9950c2a42bb594180",
+                "parentAuthor": {
+                    "fid": "328524"
+                },
+                "author": {
+                    "fid": 244128,
+                    "custodyAddress": "0x901a0d034a03b5fc73b4bcbf9fb44a0db35256fd",
+                    "username": "degentokenbase",
+                    "displayName": "Degen Bot",
+                    "pfp": {
+                        "url": "https://i.imgur.com/zjqQdrV.jpg"
+                    },
+                    "profile": {
+                        "bio": {
+                            "text": "Official Degen bot.",
+                            "mentionedProfiles": []
+                        }
+                    },
+                    "followerCount": 2594,
+                    "followingCount": 0,
+                    "verifications": [],
+                    "activeStatus": "inactive"
+                },
+                "text": "@pdf 🎩 111 tipped! 929 left today.",
+                "timestamp": "2024-02-14T13:34:42.000Z",
+                "embeds": [],
+                "mentionedProfiles": [
+                    {
+                        "fid": 328524,
+                        "custodyAddress": "0xeda5d99dce69824b44ad9a5eb6d7919d6496a176",
+                        "username": "pdf",
+                        "displayName": "Premiata Dance's Floor 🎩🔹",
+                        "pfp": {
+                            "url": "https://i.imgur.com/BaEhEFB.jpg"
+                        },
+                        "profile": {
+                            "bio": {
+                                "text": "@pdf FID : 328524 🐺",
+                                "mentionedProfiles": []
+                            }
+                        },
+                        "followerCount": 533,
+                        "followingCount": 1035,
+                        "verifications": [
+                            "0xeda5d99dce69824b44ad9a5eb6d7919d6496a176"
+                        ],
+                        "activeStatus": "inactive"
+                    }
+                ],
+                "reactions": {
+                    "count": 0,
+                    "fids": []
+                },
+                "recasts": {
+                    "count": 0,
+                    "fids": []
+                },
+                "recasters": [],
+                "replies": {
+                    "count": 0
+                }
+            }
+        ]
+    }
+}

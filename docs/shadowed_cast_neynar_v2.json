@@ -1,0 +1,98 @@
+{
+    "cast": {
+        "object": "cast",
+        "hash": "0xb18e2dbc55abc121cb786ab9950c2a42bb594180",
+        "thread_hash": "0xb18e2dbc55abc121cb786ab9950c2a42bb594180",
+        "parent_hash": null,
+        "parent_url": "https://warpcast.com/~/channel/lilgents",
+        "root_parent_url": "https://warpcast.com/~/channel/lilgents",
+        "parent_author": {
+            "fid": null
+        },
+        "author": {
+            "object": "user",
+            "fid": 13642,
+            "custody_address": "0x859f83fab3c1bbd44ab27ee3263f70685bc8429b",
+            "username": "3070",
+            "display_name": "3070 🎩-'",
+            "pfp_url": "https://i.imgur.com/P0UVr7h.gif",
+            "profile": {
+                "bio": {
+                    "text": "just looking",
+                    "mentioned_profiles": []
+                }
+            },
+            "follower_count": 706,
+            "following_count": 418,
+            "verifications": [
+                "0xea990ae72939b8751cb680919c6b64a05b8e1451"
+            ],
+            "active_status": "active"
+        },
+        "text": "sheesh we made it bois\n\ndid yk u can literally view top holders of lil gents live from this frame and go their wc profile to hit that follow?\n\nwow.\n\nlil gents r in the special handcurated browse list. hit the random few times mbe\n\nhttps://interframe-eight.vercel.app/api/home",
+        "timestamp": "2024-02-14T11:15:22.000Z",
+        "embeds": [
+            {
+                "url": "https://interframe-eight.vercel.app/api/home"
+            }
+        ],
+        "frames": [
+            {
+                "version": "vNext",
+                "title": "interframe",
+                "image": "https://interframe-eight.vercel.app/api/image/home?date=1707970488190",
+                "buttons": [
+                    {
+                        "index": 1,
+                        "title": "home",
+                        "action_type": "post"
+                    },
+                    {
+                        "index": 2,
+                        "title": "browse",
+                        "action_type": "post"
+                    },
+                    {
+                        "index": 3,
+                        "title": "search",
+                        "action_type": "post"
+                    },
+                    {
+                        "index": 4,
+                        "title": "interframe?",
+                        "action_type": "post"
+                    }
+                ],
+                "input": {},
+                "post_url": "https://interframe-eight.vercel.app/api/home",
+                "frames_url": "https://interframe-eight.vercel.app/api/home"
+            }
+        ],
+        "reactions": {
+            "likes": [
+                {
+                    "fid": 328524,
+                    "fname": "pdf"
+                },
+                {
+                    "fid": 252863,
+                    "fname": "koplak8"
+                }
+            ],
+            "recasts": [
+                {
+                    "fid": 328524,
+                    "fname": "pdf"
+                },
+                {
+                    "fid": 252863,
+                    "fname": "koplak8"
+                }
+            ]
+        },
+        "replies": {
+            "count": 1
+        },
+        "mentioned_profiles": []
+    }
+}
